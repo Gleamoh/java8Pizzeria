@@ -5,11 +5,11 @@ import java.util.List;
 
 import fr.pizzeria.model.Pizza;
 
-public class PizzaMemDoa implements IPizzaDao {
+public class PizzaDao implements IPizzaDao {
 	
 	private List<Pizza> pizzaList;
 	
-	public PizzaMemDoa() {
+	public PizzaDao() {
 		pizzaList = new ArrayList<Pizza>();
 	}
 

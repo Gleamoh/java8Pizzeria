@@ -1,11 +1,9 @@
 package pizzeria;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+	
 import java.util.Scanner;
 
-import fr.pizzeria.dao.PizzaMemDoa;
+import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.model.Pizza;
 
 public class PizzeriaConsoleList {
@@ -13,7 +11,7 @@ public class PizzeriaConsoleList {
 	public static void main(String[] args) {
 
 		// tableau de pizza
-		PizzaMemDoa pizzaMemDoa = new PizzaMemDoa();
+		PizzaDao pizzaMemDoa = new PizzaDao();
 
 		pizzaMemDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50));
 		pizzaMemDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00));
@@ -88,7 +86,7 @@ public class PizzeriaConsoleList {
 		sc.close();
 	}
 
-	private static void showPizzas(PizzaMemDoa pizzaMemDoa) {
+	private static void showPizzas(PizzaDao pizzaMemDoa) {
 		
 		for (Pizza pizza : pizzaMemDoa.findAllPizzas()) {
 			System.out.println(pizza);
