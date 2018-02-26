@@ -2,6 +2,7 @@ package pizzeria;
 
 import java.util.Scanner;
 
+import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.service.ServicePizzaFactory;
 import fr.pizzeria.service.ServicePizzaMenu;
 
@@ -18,7 +19,12 @@ public class PizzeriaConsoleFactory {
 			choix = Integer.parseInt(scanner.nextLine());
 
 			if (4 >= choix && 1 <= choix) {
-				ServicePizzaFactory.getService(choix).executeUC();
+				try {
+					ServicePizzaFactory.getService(choix).executeUC();
+				} catch (PizzaException e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+				}
 			} else if (99 == choix) {
 				System.out.println("Aurevoir ☹");
 				break;

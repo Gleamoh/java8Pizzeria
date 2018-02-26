@@ -2,6 +2,7 @@ package pizzeria;
 
 import java.util.Scanner;
 
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.service.ServicePizzaAjouter;
 import fr.pizzeria.service.ServicePizzaLister;
 import fr.pizzeria.service.ServicePizzaMenu;
@@ -9,7 +10,7 @@ import fr.pizzeria.service.ServicePizzaModifier;
 import fr.pizzeria.service.ServicePizzaSupprimer;
 
 public class PizzeriaConsoleService {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UpdatePizzaException {
 
 		Scanner scanner = new Scanner(System.in);
 		ServicePizzaMenu.setScanner(scanner);

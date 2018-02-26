@@ -1,13 +1,12 @@
 package fr.pizzeria.service;
 
-public class ServicePizzaModifier extends ServicePizzaMenu{
+import fr.pizzeria.exception.UpdatePizzaException;
 
-	public ServicePizzaModifier() {
-		super();
-	}
+public class ServicePizzaModifier extends ServicePizzaMenu {
 
 	@Override
 	public void executeUC() {
+
 		(new ServicePizzaLister()).executeUC();
 		System.out.println("########################################");
 		System.out.println("#           MODIFIER PIZZA             #");
@@ -17,7 +16,13 @@ public class ServicePizzaModifier extends ServicePizzaMenu{
 		System.out.println("----------------------------------------");
 		System.out.println();
 		// modifier la pizza
-		getPizzaMemDoa().updatePizza(code, editPizza());
+		try {
+			getPizzaMemDoa().updatePizza(code, editPizza());
+		} catch (UpdatePizzaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

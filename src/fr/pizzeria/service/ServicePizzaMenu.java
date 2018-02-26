@@ -2,8 +2,13 @@ package fr.pizzeria.service;
 
 import java.util.Scanner;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDao;
+import fr.pizzeria.exception.PizzaException;
+import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
 public abstract class ServicePizzaMenu {
@@ -30,18 +35,22 @@ public abstract class ServicePizzaMenu {
 	public ServicePizzaMenu() {
 		if (pizzaMemDoa == null) {
 			pizzaMemDoa = new PizzaDao();
-			pizzaMemDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50));
-			pizzaMemDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00));
-			pizzaMemDoa.saveNewPizza(new Pizza("REIN", "La Reine", 11.00));
-			pizzaMemDoa.saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00));
-			pizzaMemDoa.saveNewPizza(new Pizza("CAN", "La cannibale", 12.50));
-			pizzaMemDoa.saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00));
-			pizzaMemDoa.saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50));
-			pizzaMemDoa.saveNewPizza(new Pizza("IND", "L\'indienne", 14.00));
+			try {
+				pizzaMemDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50));
+				pizzaMemDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00));
+				pizzaMemDoa.saveNewPizza(new Pizza("REIN", "La Reine", 11.00));
+				pizzaMemDoa.saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00));
+				pizzaMemDoa.saveNewPizza(new Pizza("CAN", "La cannibale", 12.50));
+				pizzaMemDoa.saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00));
+				pizzaMemDoa.saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50));
+				pizzaMemDoa.saveNewPizza(new Pizza("IND", "L\'indienne", 14.00));
+			} catch (SavePizzaException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public abstract void executeUC();
+	public abstract void executeUC() throws PizzaException;
 
 	public static void ShowMenu() {
 		System.out.println("****** Pizzeria Administration ********");
@@ -56,21 +65,41 @@ public abstract class ServicePizzaMenu {
 		System.out.println("\n");
 	}
 
-	protected Pizza editPizza() {
+	/**
+	 * Affiche l'interface d'edition d'une pizza
+	 * 
+	 * @return Pizza
+	 * @throws UpdatePizzaException
+	 *             lève cette exception si la saisie de l'utilisateur est
+	 *             incorrecte
+	 */
+	protected Pizza editPizza() throws UpdatePizzaException {
+
 		System.out.println("----------------------------------------");
 		System.out.print("Veuillez saisir le code : ");
-		String code = ServicePizzaMenu.scanner.nextLine();
+		String code = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
+		// vérifie que le code est unique et a une taille de 3
+		if (code.length() != 3 || (new PizzaDao()).pizzaExists(code) || code.equals(""))
+			throw new UpdatePizzaException("Le code doit etre unique et au format  \"ABC\" !");
+
 		System.out.print("Veuillez saisir le nom (sans espace) : ");
-		String labelle = ServicePizzaMenu.scanner.nextLine();
+		String labelle = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
 		System.out.print("Veuillez saisir le prix : ");
-		double prix = Double.parseDouble(ServicePizzaMenu.scanner.nextLine());
+		String prix = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
-		return new Pizza(code, labelle, prix);
+		// vérifier que le prix est bien un nombre
+		if (!NumberUtils.isDigits(prix)) {
+			throw new UpdatePizzaException("Le prix doit etre un nombre !");
+		} else {
+			double goodPrice = Double.parseDouble(prix);
+			return new Pizza(code, labelle, goodPrice);
+		}
+
 	}
 
 }
