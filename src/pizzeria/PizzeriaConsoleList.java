@@ -8,6 +8,7 @@ import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.DeletePizzaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzeriaConsoleList {
@@ -18,14 +19,14 @@ public class PizzeriaConsoleList {
 		IPizzaDao pizzaDoa = PizzaDao.getInstance();
 
 		try {
-			pizzaDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50));
-			pizzaDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00));
-			pizzaDoa.saveNewPizza(new Pizza("REIN", "La Reine", 11.00));
-			pizzaDoa.saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00));
-			pizzaDoa.saveNewPizza(new Pizza("CAN", "La cannibale", 12.50));
-			pizzaDoa.saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00));
-			pizzaDoa.saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50));
-			pizzaDoa.saveNewPizza(new Pizza("IND", "L\'indienne", 14.00));
+			pizzaDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50, CategoriePizza.VIANDE));
+			pizzaDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00, CategoriePizza.SANS_VIANDE));
+			pizzaDoa.saveNewPizza(new Pizza("REIN", "La Reine", 11.00, CategoriePizza.VIANDE));
+			pizzaDoa.saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00, CategoriePizza.SANS_VIANDE));
+			pizzaDoa.saveNewPizza(new Pizza("CAN", "La cannibale", 12.50, CategoriePizza.VIANDE));
+			pizzaDoa.saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00, CategoriePizza.POISSON));
+			pizzaDoa.saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50, CategoriePizza.VIANDE));
+			pizzaDoa.saveNewPizza(new Pizza("IND", "L\'indienne", 14.00, CategoriePizza.VIANDE));
 		} catch (SavePizzaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,7 +131,7 @@ public class PizzeriaConsoleList {
 		System.out.println("Veuillez saisir le prix :");
 		double prix = Double.parseDouble(sc.nextLine());
 
-		return new Pizza(code, labelle, prix);
+		return new Pizza(code, labelle, prix, null);
 	}
 
 }

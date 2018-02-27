@@ -7,6 +7,7 @@ import org.apache.commons.lang.math.NumberUtils;
 import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public abstract class ServicePizzaMenu {
@@ -70,12 +71,26 @@ public abstract class ServicePizzaMenu {
 		String prix = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
+		System.out.print("Veuillez saisir la catégorie [ <Viande> | <Sans Viande> | <Poisson> ]) : ");
+		String categorie = scanner.nextLine().trim();
+		System.out.println("----------------------------------------");
+
+		// détecter la categorie en fonction du label
+		CategoriePizza categoriePizza = CategoriePizza.findByLabel(categorie);
+		
+		// autre methode : trouver en fonction du nom de la categorie ex: SANS_VIANDE
+		//CategoriePizza categoriePizza = CategoriePizza.valueOf(categorie.toUpperCase());
+		
+		if (categoriePizza == null) {
+			throw new UpdatePizzaException("Veuillez renseigner une catégorie existante !");
+		}
+
 		// vérifier que le prix est bien un nombre
 		if (!NumberUtils.isDigits(prix)) {
 			throw new UpdatePizzaException("Le prix doit etre un nombre !");
 		} else {
 			double goodPrice = Double.parseDouble(prix);
-			return new Pizza(code, labelle, goodPrice);
+			return new Pizza(code, labelle, goodPrice, categoriePizza);
 		}
 
 	}

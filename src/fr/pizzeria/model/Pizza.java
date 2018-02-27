@@ -21,6 +21,9 @@ public class Pizza {
 	
 	/** Pizza.java : int */
 	private static int compteur = 0;
+	
+	/** Pizza.java : CategoriePizza */
+	private CategoriePizza categorie;
 
 	/**
 	 * Constructor Initialise la pizza et incremente le compteur de pizza
@@ -29,11 +32,12 @@ public class Pizza {
 	 * @param libelle
 	 * @param prix
 	 */
-	public Pizza(String code, String libelle, double prix) {
+	public Pizza(String code, String libelle, double prix, CategoriePizza categorie) {
 		id = compteur++;
 		this.code = code;
 		this.labelle = libelle;
 		this.prix = prix;
+		this.categorie = categorie;
 	}
 
 	/**
@@ -53,7 +57,7 @@ public class Pizza {
 	
 	@Override
 	public String toString() {
-		return code + " -> " + labelle + " (" + prix + " €)";
+		return code + " -> " + labelle + " (" + prix + " €), " + " - " + categorie;
 	}
 
 	@Override
@@ -123,6 +127,20 @@ public class Pizza {
 	 */
 	public int getId() {
 		return id;
+	}
+
+	/** Getter
+	 * @return the categorie
+	 */
+	public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
+	/** Setter
+	 * @param categorie the categorie to set
+	 */
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
 	}
 
 }

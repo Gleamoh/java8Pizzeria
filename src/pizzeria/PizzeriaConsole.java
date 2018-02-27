@@ -11,14 +11,14 @@ public class PizzeriaConsole {
 
 		// tableau de pizza
 		Pizza[] pizzas = new Pizza[8];
-		pizzas[0] = new Pizza("PEP", "Pépéroni", 12.50);
-		pizzas[1] = new Pizza("MAR", "Margarita", 14.00);
-		pizzas[2] = new Pizza("REIN", "La Reine", 11.00);
-		pizzas[3] = new Pizza("FRO", "La 4 formages", 12.00);
-		pizzas[4] = new Pizza("CAN", "La cannibale", 12.50);
-		pizzas[5] = new Pizza("SAV", "La savoyarde", 13.00);
-		pizzas[6] = new Pizza("ORI", "L\'orientale", 13.50);
-		pizzas[7] = new Pizza("IND", "L\'indienne", 14.00);
+//		pizzas[0] = new Pizza("PEP", "Pépéroni", 12.50);
+//		pizzas[1] = new Pizza("MAR", "Margarita", 14.00);
+//		pizzas[2] = new Pizza("REIN", "La Reine", 11.00);
+//		pizzas[3] = new Pizza("FRO", "La 4 formages", 12.00);
+//		pizzas[4] = new Pizza("CAN", "La cannibale", 12.50);
+//		pizzas[5] = new Pizza("SAV", "La savoyarde", 13.00);
+//		pizzas[6] = new Pizza("ORI", "L\'orientale", 13.50);
+//		pizzas[7] = new Pizza("IND", "L\'indienne", 14.00);
 
 		System.out.println(pizzas[0]);
 		// menu
@@ -111,7 +111,7 @@ public class PizzeriaConsole {
 		System.out.println("Veuillez saisir le prix :");
 		double prix = Double.parseDouble(sc.nextLine());
 
-		return new Pizza(code, labelle, prix);
+		return new Pizza(code, labelle, prix, null);
 	}
 
 	private static void editPizzaProcess(Pizza newPizza, Pizza pizza) {
