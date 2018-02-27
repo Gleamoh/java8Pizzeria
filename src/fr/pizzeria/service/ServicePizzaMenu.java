@@ -86,7 +86,7 @@ public abstract class ServicePizzaMenu {
 		}
 
 		// vérifier que le prix est bien un nombre
-		if (!NumberUtils.isDigits(prix)) {
+		if (!NumberUtils.isNumber(prix)) {
 			throw new UpdatePizzaException("Le prix doit etre un nombre !");
 		} else {
 			double goodPrice = Double.parseDouble(prix);
