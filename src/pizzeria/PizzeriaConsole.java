@@ -95,7 +95,7 @@ public class PizzeriaConsole {
 	private static void showPizzas(Pizza[] pizzas) {
 		for (int i = 0; i < pizzas.length; i++) {
 			System.out.println(
-					pizzas[i].getCode() + " -> " + pizzas[i].getLibelle() + " (" + pizzas[i].getPrix() + " €)");
+					pizzas[i].getCode() + " -> " + pizzas[i].getLabelle() + " (" + pizzas[i].getPrix() + " €)");
 		}
 		System.out.println("\n");
 	}
@@ -116,7 +116,7 @@ public class PizzeriaConsole {
 
 	private static void editPizzaProcess(Pizza newPizza, Pizza pizza) {
 		pizza.setCode(newPizza.getCode());
-		pizza.setLibelle(newPizza.getLibelle());
+		pizza.setLabelle(newPizza.getLabelle());
 		pizza.setPrix(newPizza.getPrix());
 	}
 

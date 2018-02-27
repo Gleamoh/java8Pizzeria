@@ -1,8 +1,13 @@
 package fr.pizzeria.service;
 
+import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.UpdatePizzaException;
 
 public class ServicePizzaModifier extends ServicePizzaMenu {
+
+	public ServicePizzaModifier() {
+		super();
+	}
 
 	@Override
 	public void executeUC() {
@@ -17,7 +22,7 @@ public class ServicePizzaModifier extends ServicePizzaMenu {
 		System.out.println();
 		// modifier la pizza
 		try {
-			getPizzaMemDoa().updatePizza(code, editPizza());
+			PizzaDao.getInstance().updatePizza(code, editPizza());
 		} catch (UpdatePizzaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

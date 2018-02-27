@@ -1,5 +1,6 @@
 package fr.pizzeria.service;
 
+import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.DeletePizzaException;
 
 public class ServicePizzaSupprimer extends ServicePizzaMenu {
@@ -21,7 +22,7 @@ public class ServicePizzaSupprimer extends ServicePizzaMenu {
 		System.out.println();
 		// supprimer la pizza
 		try {
-			getPizzaMemDoa().deletePizza(codePizza);
+			PizzaDao.getInstance().deletePizza(codePizza);
 		} catch (DeletePizzaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

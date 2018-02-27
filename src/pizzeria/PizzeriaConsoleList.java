@@ -3,7 +3,11 @@ package pizzeria;
 	
 import java.util.Scanner;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDao;
+import fr.pizzeria.exception.DeletePizzaException;
+import fr.pizzeria.exception.SavePizzaException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
 public class PizzeriaConsoleList {
@@ -11,16 +15,21 @@ public class PizzeriaConsoleList {
 	public static void main(String[] args) {
 
 		// tableau de pizza
-		PizzaDao pizzaMemDoa = new PizzaDao();
+		IPizzaDao pizzaDoa = PizzaDao.getInstance();
 
-		pizzaMemDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50));
-		pizzaMemDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00));
-		pizzaMemDoa.saveNewPizza(new Pizza("REIN", "La Reine", 11.00));
-		pizzaMemDoa.saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00));
-		pizzaMemDoa.saveNewPizza(new Pizza("CAN", "La cannibale", 12.50));
-		pizzaMemDoa.saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00));
-		pizzaMemDoa.saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50));
-		pizzaMemDoa.saveNewPizza(new Pizza("IND", "L\'indienne", 14.00));
+		try {
+			pizzaDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50));
+			pizzaDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00));
+			pizzaDoa.saveNewPizza(new Pizza("REIN", "La Reine", 11.00));
+			pizzaDoa.saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00));
+			pizzaDoa.saveNewPizza(new Pizza("CAN", "La cannibale", 12.50));
+			pizzaDoa.saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00));
+			pizzaDoa.saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50));
+			pizzaDoa.saveNewPizza(new Pizza("IND", "L\'indienne", 14.00));
+		} catch (SavePizzaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// menu
 		Scanner sc = new Scanner(System.in);
@@ -43,7 +52,7 @@ public class PizzeriaConsoleList {
 				System.out.println("\n");
 				System.out.println("Liste des pizzas");
 				System.out.println("\n");
-				showPizzas(pizzaMemDoa);
+				showPizzas(pizzaDoa);
 				break;
 			}
 			case 2: {
@@ -51,29 +60,44 @@ public class PizzeriaConsoleList {
 				System.out.println("\n");
 				System.out.println("Ajout d’une nouvelle pizza");
 				System.out.println("\n");
-				pizzaMemDoa.saveNewPizza(editPizza(sc));
+				try {
+					pizzaDoa.saveNewPizza(editPizza(sc));
+				} catch (SavePizzaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			}
 			case 3: {
 
 				System.out.println("Mise à jour d’une pizza");
-				showPizzas(pizzaMemDoa);
+				showPizzas(pizzaDoa);
 				System.out.print("Veuillez choisir le code de la pizza à modifier : ");
 				String code = sc.nextLine();
 				System.out.println("");
 				// modifier la pizza
-				pizzaMemDoa.updatePizza(code, editPizza(sc));
+				try {
+					pizzaDoa.updatePizza(code, editPizza(sc));
+				} catch (UpdatePizzaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			}
 			case 4: {
 
 				System.out.println("Suppression d’une pizza");
-				showPizzas(pizzaMemDoa);
+				showPizzas(pizzaDoa);
 				System.out.print("Veuillez choisir le code de la pizza à supprimer : ");
 				String code = sc.nextLine();
 				System.out.println("");
 				// supprimer la pizza
-				pizzaMemDoa.deletePizza(code);
+				try {
+					pizzaDoa.deletePizza(code);
+				} catch (DeletePizzaException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			}
 			default: {
@@ -86,7 +110,7 @@ public class PizzeriaConsoleList {
 		sc.close();
 	}
 
-	private static void showPizzas(PizzaDao pizzaMemDoa) {
+	private static void showPizzas(IPizzaDao pizzaMemDoa) {
 		
 		for (Pizza pizza : pizzaMemDoa.findAllPizzas()) {
 			System.out.println(pizza);

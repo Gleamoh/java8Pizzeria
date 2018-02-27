@@ -4,54 +4,32 @@ import java.util.Scanner;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.PizzaException;
-import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
 public abstract class ServicePizzaMenu {
 
-	// tableau de pizza
-	private static IPizzaDao pizzaMemDoa;
-
-	protected IPizzaDao getPizzaMemDoa() {
-		return pizzaMemDoa;
-	}
-
+	/** ServicePizzaMenu.java : Scanner */
 	private static Scanner scanner;
 
-	protected static Scanner getScanner() {
-		if (scanner == null)
-			return new Scanner(System.in);
-		return scanner;
-	}
-
-	public static void setScanner(Scanner sc) {
-		ServicePizzaMenu.scanner = sc;
-	}
-
+	/**
+	 * Constructor
+	 * 
+	 */
 	public ServicePizzaMenu() {
-		if (pizzaMemDoa == null) {
-			pizzaMemDoa = new PizzaDao();
-			try {
-				pizzaMemDoa.saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50));
-				pizzaMemDoa.saveNewPizza(new Pizza("MAR", "Margarita", 14.00));
-				pizzaMemDoa.saveNewPizza(new Pizza("REIN", "La Reine", 11.00));
-				pizzaMemDoa.saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00));
-				pizzaMemDoa.saveNewPizza(new Pizza("CAN", "La cannibale", 12.50));
-				pizzaMemDoa.saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00));
-				pizzaMemDoa.saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50));
-				pizzaMemDoa.saveNewPizza(new Pizza("IND", "L\'indienne", 14.00));
-			} catch (SavePizzaException e) {
-				e.printStackTrace();
-			}
-		}
+
 	}
 
+	/**
+	 * @throws PizzaException
+	 */
 	public abstract void executeUC() throws PizzaException;
 
+	/**
+	 * Afficher le menu de selection
+	 */
 	public static void ShowMenu() {
 		System.out.println("****** Pizzeria Administration ********");
 		System.out.println("*                                     *");
@@ -77,11 +55,11 @@ public abstract class ServicePizzaMenu {
 
 		System.out.println("----------------------------------------");
 		System.out.print("Veuillez saisir le code : ");
-		String code = scanner.nextLine().trim();
+		String code = scanner.nextLine().trim().toUpperCase();
 		System.out.println("----------------------------------------");
 
 		// vérifie que le code est unique et a une taille de 3
-		if (code.length() != 3 || (new PizzaDao()).pizzaExists(code) || code.equals(""))
+		if (code.length() != 3 || PizzaDao.getInstance().pizzaExists(code) || code.equals(""))
 			throw new UpdatePizzaException("Le code doit etre unique et au format  \"ABC\" !");
 
 		System.out.print("Veuillez saisir le nom (sans espace) : ");
@@ -100,6 +78,27 @@ public abstract class ServicePizzaMenu {
 			return new Pizza(code, labelle, goodPrice);
 		}
 
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return the scanner
+	 */
+	protected static Scanner getScanner() {
+		if (scanner == null)
+			return new Scanner(System.in);
+		return scanner;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param scanner
+	 *            the scanner to set
+	 */
+	public static void setScanner(Scanner scanner) {
+		ServicePizzaMenu.scanner = scanner;
 	}
 
 }
