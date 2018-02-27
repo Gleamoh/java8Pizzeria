@@ -1,7 +1,7 @@
 package fr.pizzeria.model;
 
 /**
- * @author ETY0006
+ * @author Kevin M.
  *
  */
 public enum CategoriePizza {
@@ -32,11 +32,6 @@ public enum CategoriePizza {
 		return null;
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Enum#toString()
-	 */
 	@Override
 	public String toString() {
 		return label;

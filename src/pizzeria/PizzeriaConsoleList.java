@@ -11,8 +11,16 @@ import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
+/**
+ * @author Kevin M.
+ *
+ */
+@Deprecated // Ne pas utiliser cette classe. Anciene version.
 public class PizzeriaConsoleList {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		// tableau de pizza

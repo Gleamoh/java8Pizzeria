@@ -6,11 +6,19 @@ import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.service.ServicePizzaFactory;
 import fr.pizzeria.service.ServicePizzaMenu;
 
+/**
+ * @author Kevin M.
+ *
+ */
 public class PizzeriaConsoleFactory {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
+		
 		ServicePizzaMenu.setScanner(scanner);
 		int choix = 0;
 

@@ -1,7 +1,16 @@
 package fr.pizzeria.service;
 
+/**
+ * @author ETY0006
+ *
+ */
 public class ServicePizzaFactory {
 	
+	/**
+	 * Génère les instances de service
+	 * @param choix
+	 * @return
+	 */
 	public static ServicePizzaMenu getService(int choix) {
 		switch (choix) {
 		case 1: // list

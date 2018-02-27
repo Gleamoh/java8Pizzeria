@@ -7,7 +7,7 @@ import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 /**
- * @author ETY0006
+ * @author Kevin M.
  *
  */
 public class PizzaDao implements IPizzaDao {
@@ -26,10 +26,10 @@ public class PizzaDao implements IPizzaDao {
 			pizzaList = new ArrayList<>();
 			saveNewPizza(new Pizza("PEP", "Pépéroni", 12.50, CategoriePizza.VIANDE));
 			saveNewPizza(new Pizza("MAR", "Margarita", 14.00, CategoriePizza.SANS_VIANDE));
-			saveNewPizza(new Pizza("REIN", "La Reine", 11.00, CategoriePizza.VIANDE));
+			saveNewPizza(new Pizza("rei", "La Reine", 11.00, CategoriePizza.VIANDE));
 			saveNewPizza(new Pizza("FRO", "La 4 formages", 12.00, CategoriePizza.SANS_VIANDE));
 			saveNewPizza(new Pizza("CAN", "La cannibale", 12.50, CategoriePizza.VIANDE));
-			saveNewPizza(new Pizza("SAV", "La savoyarde", 13.00, CategoriePizza.POISSON));
+			saveNewPizza(new Pizza("sav", "La savoyarde", 13.00, CategoriePizza.POISSON));
 			saveNewPizza(new Pizza("ORI", "L\'orientale", 13.50, CategoriePizza.VIANDE));
 			saveNewPizza(new Pizza("IND", "L\'indienne", 14.00, CategoriePizza.VIANDE));
 		}

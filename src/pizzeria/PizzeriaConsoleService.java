@@ -9,6 +9,11 @@ import fr.pizzeria.service.ServicePizzaMenu;
 import fr.pizzeria.service.ServicePizzaModifier;
 import fr.pizzeria.service.ServicePizzaSupprimer;
 
+/**
+ * @author Kevin M.
+ *
+ */
+@Deprecated // Ne pas utiliser cette classe. Anciene version.
 public class PizzeriaConsoleService {
 	public static void main(String[] args) throws UpdatePizzaException {
 

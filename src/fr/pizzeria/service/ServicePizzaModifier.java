@@ -3,8 +3,15 @@ package fr.pizzeria.service;
 import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.UpdatePizzaException;
 
+/**
+ * @author Kevin M.
+ *
+ */
 public class ServicePizzaModifier extends ServicePizzaMenu {
 
+	/** Constructor
+	 * 
+	 */
 	public ServicePizzaModifier() {
 		super();
 	}

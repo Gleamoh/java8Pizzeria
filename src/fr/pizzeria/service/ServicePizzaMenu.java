@@ -56,7 +56,7 @@ public abstract class ServicePizzaMenu {
 
 		System.out.println("----------------------------------------");
 		System.out.print("Veuillez saisir le code : ");
-		String code = scanner.nextLine().trim().toUpperCase();
+		String code = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
 		// vérifie que le code est unique et a une taille de 3
@@ -79,7 +79,7 @@ public abstract class ServicePizzaMenu {
 		CategoriePizza categoriePizza = CategoriePizza.findByLabel(categorie);
 		
 		// autre methode : trouver en fonction du nom de la categorie ex: SANS_VIANDE
-		//CategoriePizza categoriePizza = CategoriePizza.valueOf(categorie.toUpperCase());
+		// CategoriePizza categoriePizza = CategoriePizza.valueOf(categorie.toUpperCase());
 		
 		if (categoriePizza == null) {
 			throw new UpdatePizzaException("Veuillez renseigner une catégorie existante !");

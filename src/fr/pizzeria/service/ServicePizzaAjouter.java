@@ -4,8 +4,15 @@ import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 
+/**
+ * @author Kevin M.
+ *
+ */
 public class ServicePizzaAjouter extends ServicePizzaMenu{
 	
+	/** Constructor
+	 * 
+	 */
 	public ServicePizzaAjouter() {
 		super();
 	}
@@ -19,7 +26,6 @@ public class ServicePizzaAjouter extends ServicePizzaMenu{
 		try {
 			PizzaDao.getInstance().saveNewPizza(editPizza());
 		} catch (UpdatePizzaException | SavePizzaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("########################################");

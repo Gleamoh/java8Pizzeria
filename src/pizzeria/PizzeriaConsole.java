@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza;
 
+@Deprecated // Ne pas utiliser cette classe. Anciene version.
 public class PizzeriaConsole {
 
 	public static void main(String[] args) {

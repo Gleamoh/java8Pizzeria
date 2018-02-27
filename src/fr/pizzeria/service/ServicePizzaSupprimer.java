@@ -3,8 +3,15 @@ package fr.pizzeria.service;
 import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.exception.DeletePizzaException;
 
+/**
+ * 
+ * @author Kevin M.
+ */
 public class ServicePizzaSupprimer extends ServicePizzaMenu {
 
+	/** Constructor
+	 * 
+	 */
 	public ServicePizzaSupprimer() {
 		super();
 	}
@@ -24,7 +31,6 @@ public class ServicePizzaSupprimer extends ServicePizzaMenu {
 		try {
 			PizzaDao.getInstance().deletePizza(codePizza);
 		} catch (DeletePizzaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
