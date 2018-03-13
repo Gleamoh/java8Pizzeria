@@ -1,4 +1,4 @@
-package pizzeria;
+package fr.pizzeria.main;
 
 	
 import java.util.Scanner;
