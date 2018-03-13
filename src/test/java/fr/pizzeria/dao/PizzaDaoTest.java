@@ -16,8 +16,6 @@ import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoTest {
-	
-	
 
 	private static List<Pizza> list() {
 		List<Pizza> list = new ArrayList<>();
@@ -25,9 +23,10 @@ public class PizzaDaoTest {
 		list.add(new Pizza(1, null, 0));
 		list.add(new Pizza(100, null, 0));
 		list.add(new Pizza(-1, null, 0));
-		
+
 		list.add(new Pizza(null, null, 0, null));
 		list.add(new Pizza("DDD", "dddddd", 0.4, CategoriePizza.POISSON));
+		
 		return list;
 	}
 
