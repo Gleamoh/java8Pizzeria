@@ -31,7 +31,7 @@ public class ServicePizzaModifier extends ServicePizzaMenu {
 		try {
 			PizzaDao.getInstance().updatePizza(code, editPizza());
 		} catch (UpdatePizzaException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 		
