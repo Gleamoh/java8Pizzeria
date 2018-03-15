@@ -15,7 +15,7 @@ import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoTest {
+public class PizzaMemoireDaoTest {
 
 	private static List<Pizza> list() {
 		List<Pizza> list = new ArrayList<>();
@@ -32,16 +32,16 @@ public class PizzaDaoTest {
 
 	@Test
 	public void testGetInstance() {
-		assertTrue(PizzaDao.getInstance() instanceof PizzaDao);
-		assertTrue(PizzaDao.getInstance() != null);
+		assertTrue(PizzaMemoireDao.getInstance() instanceof PizzaMemoireDao);
+		assertTrue(PizzaMemoireDao.getInstance() != null);
 	}
 
 	@Test
 	public void testFindAllPizzas() {
 
-		assertTrue(PizzaDao.getInstance().findAllPizzas() instanceof ArrayList);
-		assertTrue(PizzaDao.getInstance().findAllPizzas() == null);
-		assertTrue(PizzaDao.getInstance().findAllPizzas().size() == 8);
+		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas() instanceof ArrayList);
+		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas() == null);
+		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas().size() == 8);
 	}
 
 	@Test
@@ -54,8 +54,8 @@ public class PizzaDaoTest {
 	private void testSaveNewPizza(Pizza p, int taille) {
 		try {
 
-			PizzaDao.getInstance().saveNewPizza(p);
-			assertEquals(taille, PizzaDao.getInstance().findAllPizzas().size());
+			PizzaMemoireDao.getInstance().saveNewPizza(p);
+			assertEquals(taille, PizzaMemoireDao.getInstance().findAllPizzas().size());
 
 		} catch (SavePizzaException e) {
 			fail(e.getMessage());

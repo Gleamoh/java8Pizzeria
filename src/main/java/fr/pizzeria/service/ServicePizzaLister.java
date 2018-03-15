@@ -1,6 +1,6 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaDao;
+import fr.pizzeria.dao.PizzaMemoireDao;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -23,7 +23,7 @@ public class ServicePizzaLister extends ServicePizzaMenu {
 		System.out.println("#              NOS PIZZAS              #");
 		System.out.println("########################################");
 		
-		for (Pizza pizza : PizzaDao.getInstance().findAllPizzas()) {
+		for (Pizza pizza : PizzaMemoireDao.getInstance().findAllPizzas()) {
 			System.out.println("#    " + pizza);
 			System.out.println("----------------------------------------");
 		}

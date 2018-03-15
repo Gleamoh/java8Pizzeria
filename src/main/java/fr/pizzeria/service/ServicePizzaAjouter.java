@@ -1,6 +1,6 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaDao;
+import fr.pizzeria.dao.PizzaMemoireDao;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 
@@ -24,7 +24,7 @@ public class ServicePizzaAjouter extends ServicePizzaMenu{
 		System.out.println("#           NOUVELLE PIZZA             #");
 		System.out.println("########################################");
 		try {
-			PizzaDao.getInstance().saveNewPizza(editPizza());
+			PizzaMemoireDao.getInstance().saveNewPizza(editPizza());
 		} catch (UpdatePizzaException | SavePizzaException e) {
 			e.printStackTrace();
 		}

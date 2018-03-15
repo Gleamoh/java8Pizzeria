@@ -1,6 +1,6 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaDao;
+import fr.pizzeria.dao.PizzaMemoireDao;
 import fr.pizzeria.exception.DeletePizzaException;
 
 /**
@@ -29,7 +29,7 @@ public class ServicePizzaSupprimer extends ServicePizzaMenu {
 		System.out.println();
 		// supprimer la pizza
 		try {
-			PizzaDao.getInstance().deletePizza(codePizza);
+			PizzaMemoireDao.getInstance().deletePizza(codePizza);
 		} catch (DeletePizzaException e) {
 			e.printStackTrace();
 		}

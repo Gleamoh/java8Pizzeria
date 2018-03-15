@@ -21,6 +21,12 @@ public interface IPizzaDao {
 	public List<Pizza> findAllPizzas();
 
 	/**
+	 * @param id
+	 * @return : Pizza
+	 */
+	public Pizza findPizzayId(int id);
+	
+	/**
 	 * Ajoute une pizza
 	 * 
 	 * @param pizza

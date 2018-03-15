@@ -4,39 +4,64 @@ package fr.pizzeria.model;
  * @author Kevin M.
  *
  */
-public enum CategoriePizza {
+public class CategoriePizza {
 
-	VIANDE("Viande"), POISSON("Poisson"), SANS_VIANDE("Sans Viande");
+	/**
+	 * id : int
+	 */
+	private int id;
 
-	/** CategoriePizza.java : String */
+	/**
+	 * label : String
+	 */
 	private String label;
 
-	/** Constructor
+	/**
+	 * Constructor
+	 * 
 	 * @param categorie
 	 */
-	private CategoriePizza(String categorie) {
+	public CategoriePizza(String categorie, int id) {
 		label = categorie;
+		this.id = id;
 	}
-	
-	/**
-	 * Trouver la catégorie en fonction du label (on evite de faire un switch)
-	 * @param label
-	 * @return
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
 	 */
-	public static CategoriePizza findByLabel(String label) {
-		for (CategoriePizza categorie : values()) {
-			if (categorie.label.equals(label)) {
-				return categorie;
-			}
-		}
-		return null;
-	}
-	
 	@Override
 	public String toString() {
 		return label;
 	}
-	
-	
+
+	/** Getter
+	 * @return the id
+	 */
+	public int getId() {
+		return id;
+	}
+
+	/** Setter
+	 * @param id the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	/** Getter
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/** Setter
+	 * @param label the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
+	}
 
 }

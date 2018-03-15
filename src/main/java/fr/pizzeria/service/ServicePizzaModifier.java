@@ -1,6 +1,6 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaDao;
+import fr.pizzeria.dao.PizzaMemoireDao;
 import fr.pizzeria.exception.UpdatePizzaException;
 
 /**
@@ -29,7 +29,7 @@ public class ServicePizzaModifier extends ServicePizzaMenu {
 		System.out.println();
 		// modifier la pizza
 		try {
-			PizzaDao.getInstance().updatePizza(code, editPizza());
+			PizzaMemoireDao.getInstance().updatePizza(code, editPizza());
 		} catch (UpdatePizzaException e) {
 		
 			e.printStackTrace();

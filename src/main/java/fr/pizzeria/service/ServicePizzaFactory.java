@@ -21,6 +21,10 @@ public class ServicePizzaFactory {
 			return new ServicePizzaModifier();
 		case 4: // supprimer
 			return new ServicePizzaSupprimer();
+		case 5: // ajouter la liste de pizza dans la base
+			return new InflateDataPizzaService();
+		case 6:
+			return new DeleteAllPizzasService();
 		default:
 			return null;
 		}

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import fr.pizzeria.dao.PizzaDao;
+import fr.pizzeria.dao.PizzaMemoireDao;
 import fr.pizzeria.exception.PizzaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
@@ -24,7 +24,7 @@ public abstract class ServicePizzaMenu {
 	}
 
 	/**
-	 * @throws PizzaException
+	 * @throws PizzaException 
 	 */
 	public abstract void executeUC() throws PizzaException;
 
@@ -38,6 +38,7 @@ public abstract class ServicePizzaMenu {
 		System.out.println("*   2. Ajouter une nouvelle pizza     *");
 		System.out.println("*   3. Mettre à jour une pizza        *");
 		System.out.println("*   4. Supprimer une pizzas           *");
+		System.out.println("*   5. Générer les pizzas             *");
 		System.out.println("*   99. Sortir                        *");
 		System.out.println("*                                     *");
 		System.out.println("***************************************");
@@ -60,7 +61,7 @@ public abstract class ServicePizzaMenu {
 		System.out.println("----------------------------------------");
 
 		// vérifie que le code est unique et a une taille de 3
-		if (code.length() != 3 || PizzaDao.getInstance().pizzaExists(code) || code.equals(""))
+		if (code.length() != 3 || PizzaMemoireDao.getInstance().pizzaExists(code) || code.equals(""))
 			throw new UpdatePizzaException("Le code doit etre unique et au format  \"ABC\" !");
 
 		System.out.print("Veuillez saisir le nom (sans espace) : ");
