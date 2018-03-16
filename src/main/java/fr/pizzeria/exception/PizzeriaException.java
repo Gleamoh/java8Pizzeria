@@ -4,22 +4,25 @@ package fr.pizzeria.exception;
  * @author Kevin M.
  *
  */
-public class PizzaException extends Exception {
+public class PizzeriaException extends Exception {
 
 	/** PizzaException.java : long */
 	private static final long serialVersionUID = 1L;
 
-	/** Constructor
+	/**
+	 * Constructor
 	 * 
 	 */
-	public PizzaException() {
-		super();
+	public PizzeriaException() {
+		super("Erreur dans l'application Pizzeria");
 	}
 
-	/** Constructor
+	/**
+	 * Constructor
+	 * 
 	 * @param message
 	 */
-	public PizzaException(String message) {
+	public PizzeriaException(String message) {
 		super(message);
 	}
 

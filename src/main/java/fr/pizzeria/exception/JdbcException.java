@@ -1,4 +1,4 @@
-package fr.pizzeria.exception.jdbc;
+package fr.pizzeria.exception;
 
 public class JdbcException extends Exception {
 
@@ -8,7 +8,7 @@ public class JdbcException extends Exception {
 	private static final long serialVersionUID = 1L;
 
 	public JdbcException() {
-		super();
+		super("");
 	}
 
 	public JdbcException(String message) {

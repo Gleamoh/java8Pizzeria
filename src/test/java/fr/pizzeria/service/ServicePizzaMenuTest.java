@@ -9,7 +9,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
-import fr.pizzeria.exception.PizzaException;
+import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
@@ -25,7 +25,7 @@ public class ServicePizzaMenuTest {
 		ServicePizzaMenu.setScanner(ServicePizzaMenu.getScanner());
 		ServicePizzaMenu spm = new ServicePizzaMenu() {
 			@Override
-			public void executeUC() throws PizzaException {}
+			public void executeUC() throws PizzeriaException {}
 		};
 
 		assertTrue(spm.editPizza() instanceof Pizza);

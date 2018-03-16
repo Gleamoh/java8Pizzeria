@@ -3,18 +3,23 @@ package fr.pizzeria.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.NotImplementedException;
 
 import fr.pizzeria.dao.jdbc.StatementJdbc;
+import fr.pizzeria.exception.DeleteException;
+import fr.pizzeria.exception.SaveException;
+import fr.pizzeria.exception.UpdateException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 /**
  * @author Kevin M.
  *
  */
-public class PizzaJdbcDao implements IPizzaDao {
+public class PizzaJdbcDao implements IDao<Pizza>, IPizzaDao {
 
 	/** PizzaDao.java : IPizzaDao */
 	private static IPizzaDao dao;
@@ -28,15 +33,6 @@ public class PizzaJdbcDao implements IPizzaDao {
 		if (dao == null)
 			dao = new PizzaJdbcDao();
 		return dao;
-	}
-	
-	@Override
-	public List<Pizza> findAllPizzas() {
-		StatementJdbc jdbc = new StatementJdbc();
-
-		ResultSet resultats = statement.executeQuery("SELECT * FROM PIZZA");
-
-		return pizzaList
 	}
 
 	@Override
@@ -113,5 +109,52 @@ public class PizzaJdbcDao implements IPizzaDao {
 		}
 		jdbc.CloseStatementAndConnection();
 		return null;
+	}
+
+	@Override
+	public List<Pizza> findAll() {
+		StatementJdbc jdbc = new StatementJdbc();
+		ResultSet resultats = jdbc.rebuildStatement().executeQuery("SELECT * FROM PIZZA");
+		return null;
+	}
+
+	@Override
+	public Pizza findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveNew(Pizza t) throws SaveException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(Pizza t) throws UpdateException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Pizza t) throws DeleteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteById(int id) throws DeleteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Pizza> parseToList(ResultSet result) {
+		List<Pizza> list = new ArrayList<>();
+		Pizza pizza = null;
+		while (result.next()) {
+			list.add(new Pizza(result.getString(""), result.getInt(""));
+		})
+		return list;
 	}
 }

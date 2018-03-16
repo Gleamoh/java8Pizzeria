@@ -5,7 +5,7 @@ import java.util.Scanner;
 import org.apache.commons.lang.math.NumberUtils;
 
 import fr.pizzeria.dao.PizzaMemoireDao;
-import fr.pizzeria.exception.PizzaException;
+import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -24,9 +24,9 @@ public abstract class ServicePizzaMenu {
 	}
 
 	/**
-	 * @throws PizzaException 
+	 * @throws PizzeriaException 
 	 */
-	public abstract void executeUC() throws PizzaException;
+	public abstract void executeUC() throws PizzeriaException;
 
 	/**
 	 * Afficher le menu de selection

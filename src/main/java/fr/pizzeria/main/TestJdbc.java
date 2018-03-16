@@ -9,8 +9,9 @@ public class TestJdbc {
 		System.out.println((new StatementJdbc()).rebuildStatement());
 		System.out.println((new StatementJdbc()).rebuildStatement());
 		StatementJdbc jdbc = new StatementJdbc();
+		jdbc.rebuildStatement().
 		
-		PizzaJdbcDao.getInstance();
+//		PizzaJdbcDao.getInstance();
 	
 	}
 }

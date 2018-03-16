@@ -3,8 +3,8 @@ package fr.pizzeria.dao.jdbc;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import fr.pizzeria.exception.jdbc.BuildStatementJdbcException;
-import fr.pizzeria.exception.jdbc.JdbcException;
+import fr.pizzeria.exception.BuildStatementJdbcException;
+import fr.pizzeria.exception.JdbcException;
 
 /**
  * Permet de générer un statement à partir d'un objet DatabaseJdbc. Il est

@@ -2,7 +2,7 @@ package fr.pizzeria.main;
 
 import java.util.Scanner;
 
-import fr.pizzeria.exception.PizzaException;
+import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.service.ServicePizzaFactory;
 import fr.pizzeria.service.ServicePizzaMenu;
 
@@ -29,7 +29,7 @@ public class PizzeriaConsoleFactory {
 			if (4 >= choix && 1 <= choix) {
 				try {
 					ServicePizzaFactory.getService(choix).executeUC();
-				} catch (PizzaException e) {
+				} catch (PizzeriaException e) {
 					System.out.println(e.getMessage());
 					e.printStackTrace();
 				}

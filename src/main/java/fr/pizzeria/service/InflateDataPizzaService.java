@@ -3,7 +3,7 @@ package fr.pizzeria.service;
 import java.util.stream.Stream;
 
 import fr.pizzeria.dao.PizzaJdbcDao;
-import fr.pizzeria.exception.PizzaException;
+import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.SavePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -19,7 +19,7 @@ public class InflateDataPizzaService extends ServicePizzaMenu {
 	 * @see fr.pizzeria.service.ServicePizzaMenu#executeUC()
 	 */
 	@Override
-	public void executeUC() throws PizzaException {
+	public void executeUC() throws PizzeriaException {
 		
 		// TODO récupérer les catégories de la base
 		CategoriePizza viande = new CategoriePizza("Viande", 1);

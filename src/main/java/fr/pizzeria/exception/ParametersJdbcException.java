@@ -1,4 +1,4 @@
-package fr.pizzeria.exception.jdbc;
+package fr.pizzeria.exception;
 
 public class ParametersJdbcException extends JdbcException {
 	/**
@@ -6,10 +6,16 @@ public class ParametersJdbcException extends JdbcException {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/** Constructor
+	 * 
+	 */
 	public ParametersJdbcException() {
 		super();
 	}
 
+	/** Constructor
+	 * @param message
+	 */
 	public ParametersJdbcException(String message) {
 		super(message);
 	}

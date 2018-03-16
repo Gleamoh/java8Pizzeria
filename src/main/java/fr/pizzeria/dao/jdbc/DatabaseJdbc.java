@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import fr.pizzeria.exception.jdbc.JdbcException;
-import fr.pizzeria.exception.jdbc.ParametersJdbcException;
+import fr.pizzeria.exception.JdbcException;
+import fr.pizzeria.exception.ParametersJdbcException;
 
 /**
  * @author Kevin M. TODO creer un pool de connexion

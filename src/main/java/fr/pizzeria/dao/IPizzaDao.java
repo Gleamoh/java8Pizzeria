@@ -1,10 +1,7 @@
 package fr.pizzeria.dao;
 
-import java.util.List;
-
-import fr.pizzeria.exception.DeletePizzaException;
-import fr.pizzeria.exception.SavePizzaException;
-import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.exception.DeleteException;
+import fr.pizzeria.exception.UpdateException;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -13,26 +10,6 @@ import fr.pizzeria.model.Pizza;
  *
  */
 public interface IPizzaDao {
-	/**
-	 * Retourne la liste des pizzas
-	 * 
-	 * @return List<Pizza>
-	 */
-	public List<Pizza> findAllPizzas();
-
-	/**
-	 * @param id
-	 * @return : Pizza
-	 */
-	public Pizza findPizzayId(int id);
-	
-	/**
-	 * Ajoute une pizza
-	 * 
-	 * @param pizza
-	 * @throws SavePizzaException
-	 */
-	public void saveNewPizza(Pizza pizza) throws SavePizzaException;
 
 	/**
 	 * Modifie une pizza
@@ -41,7 +18,7 @@ public interface IPizzaDao {
 	 * @param pizza
 	 * @throws UpdatePizzaException
 	 */
-	public void updatePizza(String codePizza, Pizza pizza) throws UpdatePizzaException;
+	public void updatePizza(String codePizza, Pizza pizza) throws UpdateException;
 
 	/**
 	 * Supprime une pizza
@@ -49,7 +26,7 @@ public interface IPizzaDao {
 	 * @param codePizza
 	 * @throws DeletePizzaException
 	 */
-	public void deletePizza(String codePizza) throws DeletePizzaException;
+	public void deletePizza(String codePizza) throws DeleteException;
 
 	/**
 	 * Trouver une pizza en fonction du code en paramètre
