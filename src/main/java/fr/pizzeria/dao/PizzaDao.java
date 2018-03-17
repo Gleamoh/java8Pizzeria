@@ -1,5 +1,7 @@
 package fr.pizzeria.dao;
 
+import java.sql.SQLException;
+
 import fr.pizzeria.exception.DeleteException;
 import fr.pizzeria.exception.UpdateException;
 import fr.pizzeria.model.Pizza;
@@ -9,7 +11,7 @@ import fr.pizzeria.model.Pizza;
  * @author Kevin M. Interface qui definie les méthodes permettant CRUD
  *
  */
-public interface IPizzaDao {
+public interface PizzaDao {
 
 	/**
 	 * Modifie une pizza
@@ -18,7 +20,7 @@ public interface IPizzaDao {
 	 * @param pizza
 	 * @throws UpdatePizzaException
 	 */
-	public void updatePizza(String codePizza, Pizza pizza) throws UpdateException;
+	public void updatePizza(String codePizza, Pizza pizza) throws SQLException;
 
 	/**
 	 * Supprime une pizza
@@ -26,7 +28,7 @@ public interface IPizzaDao {
 	 * @param codePizza
 	 * @throws DeletePizzaException
 	 */
-	public void deletePizza(String codePizza) throws DeleteException;
+	public void deletePizza(String codePizza) throws SQLException;
 
 	/**
 	 * Trouver une pizza en fonction du code en paramètre
@@ -34,7 +36,7 @@ public interface IPizzaDao {
 	 * @param codePizza
 	 * @return
 	 */
-	public Pizza findPizzaByCode(String codePizza);
+	public Pizza findPizzaByCode(String codePizza) throws SQLException;
 
 	/**
 	 * Retourne vrai si la pizza est presente dans la liste
@@ -42,5 +44,5 @@ public interface IPizzaDao {
 	 * @param codePizza
 	 * @return boolean
 	 */
-	public boolean pizzaExists(String codePizza);
+	public boolean pizzaExists(String codePizza) throws SQLException;
 }

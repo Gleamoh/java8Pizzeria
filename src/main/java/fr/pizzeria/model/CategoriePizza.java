@@ -6,6 +6,7 @@ package fr.pizzeria.model;
  */
 public class CategoriePizza {
 
+	
 	/**
 	 * id : int
 	 */
@@ -14,7 +15,15 @@ public class CategoriePizza {
 	/**
 	 * label : String
 	 */
-	private String label;
+	private String labelle;
+
+	/**
+	 * Constructor
+	 * 
+	 */
+	public CategoriePizza() {
+
+	}
 
 	/**
 	 * Constructor
@@ -22,7 +31,7 @@ public class CategoriePizza {
 	 * @param categorie
 	 */
 	public CategoriePizza(String categorie, int id) {
-		label = categorie;
+		labelle = categorie;
 		this.id = id;
 	}
 
@@ -33,35 +42,45 @@ public class CategoriePizza {
 	 */
 	@Override
 	public String toString() {
-		return label;
+		return id + " - " + labelle ;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the id
 	 */
 	public int getId() {
 		return id;
 	}
 
-	/** Setter
-	 * @param id the id to set
+	/**
+	 * Setter
+	 * 
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the label
 	 */
-	public String getLabel() {
-		return label;
+	public String getLabelle() {
+		return labelle;
 	}
 
-	/** Setter
-	 * @param label the label to set
+	/**
+	 * Setter
+	 * 
+	 * @param label
+	 *            the label to set
 	 */
-	public void setLabel(String label) {
-		this.label = label;
+	public void setLabelle(String label) {
+		this.labelle = label;
 	}
 
 }

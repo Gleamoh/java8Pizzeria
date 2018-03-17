@@ -1,5 +1,5 @@
 package fr.pizzeria.dao.jdbc;
-
+// TODO Creer un pool de connexions
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -104,6 +104,7 @@ public class DatabaseJdbc {
 	private void buildConnection() {
 		try {
 			connection = DriverManager.getConnection(toUrl(), username, password);
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -61,7 +61,7 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return StringUtils.toString(this);
+		return id + " - " + code + " - " + labelle + " coûte " + prix + "€ ";
 	}
 
 	@Override
@@ -85,6 +85,7 @@ public class Pizza {
 		prix = pizza.prix;
 	}
 
+	
 	/**
 	 * Getter
 	 * 

@@ -65,6 +65,19 @@
 			<version>2.2.3</version>
 		</dependency>
 
+		<!-- API slf4j : Logger -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.18</version>
+		</dependency>
+
+		<!-- Implémentation slf4j : logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.2</version>
+		</dependency>
 	</dependencies>
 
 </project>

@@ -3,8 +3,8 @@ package fr.pizzeria.main;
 import java.util.Scanner;
 
 import fr.pizzeria.exception.PizzeriaException;
-import fr.pizzeria.service.ServicePizzaFactory;
-import fr.pizzeria.service.ServicePizzaMenu;
+import fr.pizzeria.service.FactoryPizzaService;
+import fr.pizzeria.service.MenuPizzaService;
 
 /**
  * @author Kevin M.
@@ -19,16 +19,16 @@ public class PizzeriaConsoleFactory {
 
 		Scanner scanner = new Scanner(System.in);
 		
-		ServicePizzaMenu.setScanner(scanner);
+		MenuPizzaService.setScanner(scanner);
 		int choix = 0;
 
 		while (true) {
-			ServicePizzaMenu.ShowMenu();
+			MenuPizzaService.ShowMenu();
 			choix = Integer.parseInt(scanner.nextLine());
 
 			if (4 >= choix && 1 <= choix) {
 				try {
-					ServicePizzaFactory.getService(choix).executeUC();
+					FactoryPizzaService.getService(choix).executeUC();
 				} catch (PizzeriaException e) {
 					System.out.println(e.getMessage());
 					e.printStackTrace();

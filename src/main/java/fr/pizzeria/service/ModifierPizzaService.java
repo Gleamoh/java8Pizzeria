@@ -1,25 +1,32 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaMemoireDao;
-import fr.pizzeria.exception.UpdatePizzaException;
+import java.sql.SQLException;
+
+import fr.pizzeria.dao.impl.PizzaJdbcDaoImpl;
+import fr.pizzeria.exception.PizzeriaException;
+import fr.pizzeria.exception.UpdateException;
 
 /**
  * @author Kevin M.
  *
  */
-public class ServicePizzaModifier extends ServicePizzaMenu {
+public class ModifierPizzaService extends MenuPizzaService {
+	/**
+	 * pDao : PizzaJdbcDaoImpl
+	 */
+	PizzaJdbcDaoImpl pDao = new PizzaJdbcDaoImpl();
 
-	/** Constructor
+	/**
+	 * Constructor
 	 * 
 	 */
-	public ServicePizzaModifier() {
+	public ModifierPizzaService() {
 		super();
 	}
 
 	@Override
-	public void executeUC() {
+	public void executeUC() throws UpdateException {
 
-		(new ServicePizzaLister()).executeUC();
 		System.out.println("########################################");
 		System.out.println("#           MODIFIER PIZZA             #");
 		System.out.println("########################################");
@@ -29,12 +36,11 @@ public class ServicePizzaModifier extends ServicePizzaMenu {
 		System.out.println();
 		// modifier la pizza
 		try {
-			PizzaMemoireDao.getInstance().updatePizza(code, editPizza());
-		} catch (UpdatePizzaException e) {
-		
-			e.printStackTrace();
+			pDao.updatePizza(code, editPizza());
+		} catch (PizzeriaException | SQLException e) {
+			throw new UpdateException();
 		}
-		
+
 	}
 
 }

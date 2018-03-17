@@ -7,53 +7,52 @@ import java.util.List;
 import fr.pizzeria.exception.DeleteException;
 import fr.pizzeria.exception.SaveException;
 import fr.pizzeria.exception.UpdateException;
-import fr.pizzeria.model.Pizza;
 
 /**
  * 
  * @author Kevin M. Interface qui definie les méthodes permettant CRUD
  *
  */
-public interface IDao<T> {
+public interface Dao<T> {
 
 	/**
 	 * @return : List<T>
 	 */
-	List<T> findAll();
+	List<T> findAll() throws SQLException;
 
 	/**
 	 * @param id
-	 * @return : Pizza
+	 * @return : T
 	 */
-	Pizza findById(int id);
+	T findById(int id) throws SQLException;
+
+	/**
+	 * @param labelle
+	 * @return : T
+	 * @throws SQLException
+	 */
+	T findByLabel(String labelle) throws SQLException;
 
 	/**
 	 * @param t
 	 * @throws SaveException
 	 *             : void
 	 */
-	void saveNew(T t) throws SaveException;
+	void saveNew(T t) throws SQLException;
 
 	/**
 	 * @param t
 	 * @throws UpdateException
 	 *             : void
 	 */
-	void update(T t) throws UpdateException;
+	void update(T t) throws SQLException;
 
 	/**
 	 * @param t
 	 * @throws DeleteException
 	 *             : void
 	 */
-	void delete(T t) throws DeleteException;
-
-	/**
-	 * @param id
-	 * @throws DeleteException
-	 *             : void
-	 */
-	void deleteById(int id) throws DeleteException;
+	void delete(T t) throws SQLException;
 
 	/**
 	 * @param result

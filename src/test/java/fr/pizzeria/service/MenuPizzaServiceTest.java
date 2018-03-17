@@ -10,36 +10,41 @@ import org.junit.Test;
 import org.junit.contrib.java.lang.system.TextFromStandardInputStream;
 
 import fr.pizzeria.exception.PizzeriaException;
-import fr.pizzeria.exception.UpdatePizzaException;
+import fr.pizzeria.exception.UpdateException;
 import fr.pizzeria.model.Pizza;
 
-public class ServicePizzaMenuTest {
+public class MenuPizzaServiceTest {
 
 	@Rule
 	public TextFromStandardInputStream systemInMock = emptyStandardInputStream();
 
 	@Test
-	public void testEditPizza() throws UpdatePizzaException {
+	public void testEditPizza() throws UpdateException {
 		systemInMock.provideLines("KKK", "Ma Pizza", "45.0", "Viande");
 
-		ServicePizzaMenu.setScanner(ServicePizzaMenu.getScanner());
-		ServicePizzaMenu spm = new ServicePizzaMenu() {
+		MenuPizzaService.setScanner(MenuPizzaService.getScanner());
+		MenuPizzaService spm = new MenuPizzaService() {
 			@Override
 			public void executeUC() throws PizzeriaException {}
 		};
 
-		assertTrue(spm.editPizza() instanceof Pizza);
+		try {
+			assertTrue(spm.editPizza() instanceof Pizza);
+		} catch (PizzeriaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	public void testGetScanner() {
-		assertTrue(ServicePizzaMenu.getScanner() instanceof Scanner);
+		assertTrue(MenuPizzaService.getScanner() instanceof Scanner);
 	}
 
 	@Test
 	public void testSetScanner() {
-		ServicePizzaMenu.setScanner(new Scanner(System.in));
-		assertTrue(ServicePizzaMenu.getScanner() instanceof Scanner);
+		MenuPizzaService.setScanner(new Scanner(System.in));
+		assertTrue(MenuPizzaService.getScanner() instanceof Scanner);
 	}
 
 }

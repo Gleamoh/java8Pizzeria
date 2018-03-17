@@ -4,23 +4,23 @@ package fr.pizzeria.service;
  * @author ETY0006
  *
  */
-public class ServicePizzaFactory {
+public class FactoryPizzaService {
 	
 	/**
 	 * Génère les instances de service
 	 * @param choix
 	 * @return
 	 */
-	public static ServicePizzaMenu getService(int choix) {
+	public static MenuPizzaService getService(int choix) {
 		switch (choix) {
 		case 1: // list
-			return new ServicePizzaLister();
+			return new ListerPizzaService();
 		case 2: // add
-			return new ServicePizzaAjouter();
+			return new AjouterPizzaService();
 		case 3: // modifier
-			return new ServicePizzaModifier();
+			return new ModifierPizzaService();
 		case 4: // supprimer
-			return new ServicePizzaSupprimer();
+			return new SupprimerPizzaService();
 		case 5: // ajouter la liste de pizza dans la base
 			return new InflateDataPizzaService();
 		case 6:

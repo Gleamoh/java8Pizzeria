@@ -1,47 +1,46 @@
 package fr.pizzeria.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.DataOutput;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.junit.Test;
 
-import fr.pizzeria.exception.SavePizzaException;
-import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaMemoireDaoTest {
 
 	private static List<Pizza> list() {
-		List<Pizza> list = new ArrayList<>();
-		list.add(new Pizza(0, null, 0));
-		list.add(new Pizza(1, null, 0));
-		list.add(new Pizza(100, null, 0));
-		list.add(new Pizza(-1, null, 0));
+		throw new NotImplementedException();
 
-		list.add(new Pizza(null, null, 0, null));
-		list.add(new Pizza("DDD", "dddddd", 0.4, CategoriePizza.POISSON));
-		
-		return list;
+//		List<Pizza> list = new ArrayList<>();
+//		list.add(new Pizza(0, null, 0));
+//		list.add(new Pizza(1, null, 0));
+//		list.add(new Pizza(100, null, 0));
+//		list.add(new Pizza(-1, null, 0));
+//
+//		list.add(new Pizza(null, null, 0, null));
+//		list.add(new Pizza("DDD", "dddddd", 0.4, CategoriePizza.POISSON));
+//		
+//		return list;
 	}
 
 	@Test
 	public void testGetInstance() {
-		assertTrue(PizzaMemoireDao.getInstance() instanceof PizzaMemoireDao);
-		assertTrue(PizzaMemoireDao.getInstance() != null);
+		throw new NotImplementedException();
+
+//		assertTrue(PizzaMemoireDao.getInstance() instanceof PizzaMemoireDao);
+//		assertTrue(PizzaMemoireDao.getInstance() != null);
 	}
 
 	@Test
 	public void testFindAllPizzas() {
-
-		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas() instanceof ArrayList);
-		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas() == null);
-		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas().size() == 8);
+		throw new NotImplementedException();
+//		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas() instanceof ArrayList);
+//		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas() == null);
+//		assertTrue(PizzaMemoireDao.getInstance().findAllPizzas().size() == 8);
 	}
 
 	@Test
@@ -52,14 +51,16 @@ public class PizzaMemoireDaoTest {
 	}
 
 	private void testSaveNewPizza(Pizza p, int taille) {
-		try {
+		throw new NotImplementedException();
 
-			PizzaMemoireDao.getInstance().saveNewPizza(p);
-			assertEquals(taille, PizzaMemoireDao.getInstance().findAllPizzas().size());
-
-		} catch (SavePizzaException e) {
-			fail(e.getMessage());
-		}
+//		try {
+//
+//			PizzaMemoireDao.getInstance().saveNewPizza(p);
+//			assertEquals(taille, PizzaMemoireDao.getInstance().findAllPizzas().size());
+//
+//		} catch (SavePizzaException e) {
+//			fail(e.getMessage());
+//		}
 
 	}
 

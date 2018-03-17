@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Redireriger les loggeurs vers la sortie standard -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>>%msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- redirection vers un fichier -->
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>c:/temp/java/app.log</file>
+		<append>true</append>
+		<immediateFlush>true</immediateFlush>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+
+<!-- 	<appender name="FILE-JPA" class="ch.qos.logback.core.FileAppender">
+		<file>c:/temp/java/hibernate.log</file>
+		<append>true</append>
+		<immediateFlush>true</immediateFlush>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %msg%n
+			</pattern>
+		</encoder>
+	</appender> -->
+
+	<!-- politique de log pour les classes du package com.testjpa.standalone -->
+<!-- 	<logger name="com.testjpa.standalone" level="INFO">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
+	</logger> -->
+
+	<!-- Log hibernate -->
+<!-- 	<logger name="org.hibernate" level="ERROR">
+		<appender-ref ref="FILE-JPA" />
+		<appender-ref ref="STDOUT" />
+	</logger> -->
+
+	<!-- règle de logs par défaut. Ici : niveau DEBUG vers la sortie standard -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

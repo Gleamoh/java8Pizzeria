@@ -1,25 +1,31 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaMemoireDao;
-import fr.pizzeria.exception.DeletePizzaException;
+import java.sql.SQLException;
+
+import fr.pizzeria.dao.impl.PizzaJdbcDaoImpl;
+import fr.pizzeria.exception.DeleteException;
 
 /**
  * 
  * @author Kevin M.
  */
-public class ServicePizzaSupprimer extends ServicePizzaMenu {
+public class SupprimerPizzaService extends MenuPizzaService {
+	/**
+	 * pDao : PizzaJdbcDaoImpl
+	 */
+	PizzaJdbcDaoImpl pDao = new PizzaJdbcDaoImpl();
 
-	/** Constructor
+	/**
+	 * Constructor
 	 * 
 	 */
-	public ServicePizzaSupprimer() {
+	public SupprimerPizzaService() {
 		super();
 	}
 
 	@Override
-	public void executeUC() {
+	public void executeUC() throws DeleteException {
 
-		(new ServicePizzaLister()).executeUC();
 		System.out.println("########################################");
 		System.out.println("#           SUPPRIMER PIZZA            #");
 		System.out.println("########################################");
@@ -29,9 +35,9 @@ public class ServicePizzaSupprimer extends ServicePizzaMenu {
 		System.out.println();
 		// supprimer la pizza
 		try {
-			PizzaMemoireDao.getInstance().deletePizza(codePizza);
-		} catch (DeletePizzaException e) {
-			e.printStackTrace();
+			pDao.deletePizza(codePizza);
+		} catch (SQLException e) {
+			throw new DeleteException();
 		}
 
 	}
