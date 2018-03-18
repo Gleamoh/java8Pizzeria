@@ -2,8 +2,12 @@ package fr.pizzeria.service;
 
 import java.sql.SQLException;
 
-import fr.pizzeria.dao.impl.PizzaJdbcDaoImpl;
+import fr.pizzeria.dao.CategoryDao;
+import fr.pizzeria.dao.Dao;
+import fr.pizzeria.dao.PizzaPizzeriaDao;
+import fr.pizzeria.dao.PizzeriaDao;
 import fr.pizzeria.exception.SaveException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -12,7 +16,8 @@ import fr.pizzeria.model.Pizza;
  */
 public class ListerPizzaService extends MenuPizzaService {
 	
-	private PizzaJdbcDaoImpl pizzaDao = new PizzaJdbcDaoImpl();
+	private PizzeriaDao pizzaDao = new PizzaPizzeriaDao();
+	private Dao<CategoriePizza> cDao = new CategoryDao();
 	
 	/** Constructor
 	 * 
@@ -30,6 +35,8 @@ public class ListerPizzaService extends MenuPizzaService {
 		
 		try {
 			for (Pizza pizza : pizzaDao.findAll()) {
+				CategoriePizza categorie = cDao.findById(pizza.getCategorie().getId());
+				pizza.setCategorie(categorie);
 				System.out.println("#    " + pizza);
 				System.out.println("----------------------------------------");
 			}

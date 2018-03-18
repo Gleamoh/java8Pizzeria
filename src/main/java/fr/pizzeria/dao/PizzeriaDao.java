@@ -2,8 +2,6 @@ package fr.pizzeria.dao;
 
 import java.sql.SQLException;
 
-import fr.pizzeria.exception.DeleteException;
-import fr.pizzeria.exception.UpdateException;
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -11,7 +9,7 @@ import fr.pizzeria.model.Pizza;
  * @author Kevin M. Interface qui definie les méthodes permettant CRUD
  *
  */
-public interface PizzaDao {
+public interface PizzeriaDao extends Dao<Pizza> {
 
 	/**
 	 * Modifie une pizza

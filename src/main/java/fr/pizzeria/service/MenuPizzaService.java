@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import fr.pizzeria.dao.impl.CategoryDaoImpl;
-import fr.pizzeria.dao.impl.PizzaJdbcDaoImpl;
+import fr.pizzeria.dao.CategoryDao;
+import fr.pizzeria.dao.PizzaPizzeriaDao;
 import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.UpdateException;
 import fr.pizzeria.model.CategoriePizza;
@@ -20,12 +20,12 @@ public abstract class MenuPizzaService {
 	/**
 	 * pDao : PizzaJdbcDaoImpl
 	 */
-	PizzaJdbcDaoImpl pDao = new PizzaJdbcDaoImpl();
+	PizzaPizzeriaDao pDao = new PizzaPizzeriaDao();
 
 	/**
 	 * cDao : CategoryDaoImpl
 	 */
-	CategoryDaoImpl cDao = new CategoryDaoImpl();
+	CategoryDao cDao = new CategoryDao();
 
 	/**
 	 * Constructor
@@ -82,7 +82,7 @@ public abstract class MenuPizzaService {
 			throw new PizzeriaException("La pizza n'existe pas");
 		}
 
-		System.out.print("Veuillez saisir le nom (sans espace) : ");
+		System.out.print("Veuillez saisir le nom : ");
 		String labelle = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
@@ -90,7 +90,7 @@ public abstract class MenuPizzaService {
 		String prix = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
-		System.out.print("Veuillez saisir la catégorie [ <Viande> | <Sans Viande> | <Poisson> ]) : ");
+		System.out.print("Veuillez saisir la catégorie [ Viande | Vegan | Poisson ]) : ");
 		String categorie = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 

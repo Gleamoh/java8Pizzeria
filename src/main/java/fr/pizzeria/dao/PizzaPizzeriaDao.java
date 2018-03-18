@@ -1,4 +1,4 @@
-package fr.pizzeria.dao.impl;
+package fr.pizzeria.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.pizzeria.dao.Dao;
-import fr.pizzeria.dao.PizzaDao;
 import fr.pizzeria.dao.jdbc.StatementJdbc;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -17,21 +15,21 @@ import fr.pizzeria.model.Pizza;
  * @author Kevin M.
  *
  */
-public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
+public class PizzaPizzeriaDao implements PizzeriaDao {
 
 	/**
-	 * dao : PizzaDao
+	 * FFF dao : PizzaDao
 	 */
-	private static PizzaDao dao;
+	private static PizzeriaDao dao;
 
 	/**
 	 * Singleton dao
 	 * 
 	 * @return
 	 */
-	public static PizzaDao getInstance() {
+	public static PizzeriaDao getInstance() {
 		if (dao == null)
-			dao = new PizzaJdbcDaoImpl();
+			dao = new PizzaPizzeriaDao();
 		return dao;
 	}
 
@@ -62,7 +60,7 @@ public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
 		preparedStatement.setDouble(3, pizza.getPrix());
 		preparedStatement.setInt(4, pizza.getCategorie().getId());
 		preparedStatement.executeUpdate();
-
+		
 		connection.commit();
 		preparedStatement.close();
 		jdbc.CloseStatementAndConnection();
@@ -74,16 +72,16 @@ public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
 	 * @see fr.pizzeria.dao.Dao#update(java.lang.Object)
 	 */
 	@Override
-	public void update(Pizza t) throws SQLException {
+	public void update(Pizza pizza) throws SQLException {
 		StatementJdbc jdbc = new StatementJdbc();
 		Connection connection = jdbc.rebuildStatement().getConnection();
 
 		PreparedStatement preparedStatement = connection
-				.prepareStatement("UPDATE pizza SET code=? AND labelle=? " + "AND id_categorie=? WHERE id=?");
-		preparedStatement.setString(1, t.getCode());
-		preparedStatement.setString(2, t.getLabelle());
-		preparedStatement.setInt(3, t.getCategorie().getId());
-		preparedStatement.setInt(4, t.getId());
+				.prepareStatement("UPDATE pizza SET code=?, labelle=?, id_categorie=? WHERE id=?");
+		preparedStatement.setString(1, pizza.getCode());
+		preparedStatement.setString(2, pizza.getLabelle());
+		preparedStatement.setInt(3, pizza.getCategorie().getId());
+		preparedStatement.setInt(4, pizza.getId());
 		preparedStatement.executeUpdate();
 
 		connection.commit();
@@ -122,8 +120,11 @@ public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
 
 		while (result.next()) {
 			categoriePizza = new CategoriePizza(null, result.getInt("id_categorie"));
-			list.add(new Pizza(result.getString("code"), result.getString("labelle"), result.getDouble("prix"),
-					categoriePizza));
+			
+			Pizza pizza = new Pizza(result.getString("code"), result.getString("labelle"), result.getDouble("prix"),
+					categoriePizza);
+			pizza.setId(result.getInt("id"));
+			list.add(pizza);
 		}
 		return list;
 	}
@@ -140,7 +141,7 @@ public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
 		Connection connection = jdbc.rebuildStatement().getConnection();
 
 		PreparedStatement preparedStatement = connection
-				.prepareStatement("UPDATE pizza SET code=? AND labelle=? " + "AND id_categorie=? WHERE code=?");
+				.prepareStatement("UPDATE pizza SET code = ?, labelle = ?, id_categorie = ? WHERE code=?");
 		preparedStatement.setString(1, pizza.getCode());
 		preparedStatement.setString(2, pizza.getLabelle());
 		preparedStatement.setInt(3, pizza.getCategorie().getId());
@@ -185,8 +186,11 @@ public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
 		preparedStatement.setString(1, codePizza);
 		ResultSet resultSet = preparedStatement.executeQuery();
 
-		Pizza pizza = parseToList(resultSet).get(0);
-
+		List<Pizza> pizzas = parseToList(resultSet);
+		Pizza pizza = null;
+		if (!pizzas.isEmpty()) {
+			pizza = pizzas.get(0);
+		}
 		preparedStatement.close();
 		resultSet.close();
 		jdbc.CloseStatementAndConnection();
@@ -226,7 +230,11 @@ public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
 		preparedStatement.setInt(1, id);
 		ResultSet resultSet = preparedStatement.executeQuery();
 
-		Pizza pizza = parseToList(resultSet).get(0);
+		List<Pizza> pizzas = parseToList(resultSet);
+		Pizza pizza = null;
+		if (!pizzas.isEmpty()) {
+			pizza = pizzas.get(0);
+		}
 
 		preparedStatement.close();
 		resultSet.close();
@@ -241,12 +249,16 @@ public class PizzaJdbcDaoImpl implements Dao<Pizza>, PizzaDao {
 		PreparedStatement preparedStatement;
 
 		preparedStatement = jdbc.rebuildStatement().getConnection()
-				.prepareStatement("SELECT * FROM categorie WHERE labelle = ? LIMIT 1");
+				.prepareStatement("SELECT * FROM pizza WHERE labelle = ? LIMIT 1");
 		preparedStatement.setString(1, labelle);
 
 		ResultSet resultSet = preparedStatement.executeQuery();
 
-		Pizza pizza = parseToList(resultSet).get(0);
+		List<Pizza> pizzas = parseToList(resultSet);
+		Pizza pizza = null;
+		if (!pizzas.isEmpty()) {
+			pizza = pizzas.get(0);
+		}
 
 		preparedStatement.close();
 		resultSet.close();

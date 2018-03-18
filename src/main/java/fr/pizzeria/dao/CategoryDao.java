@@ -1,4 +1,4 @@
-package fr.pizzeria.dao.impl;
+package fr.pizzeria.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.pizzeria.dao.Dao;
 import fr.pizzeria.dao.jdbc.StatementJdbc;
 import fr.pizzeria.model.CategoriePizza;
 
@@ -15,7 +14,7 @@ import fr.pizzeria.model.CategoriePizza;
  * @author Kevin M.
  *
  */
-public class CategoryDaoImpl implements Dao<CategoriePizza> {
+public class CategoryDao implements Dao<CategoriePizza> {
 
 	@Override
 	public List<CategoriePizza> findAll() throws SQLException {

@@ -2,7 +2,7 @@ package fr.pizzeria.service;
 
 import java.sql.SQLException;
 
-import fr.pizzeria.dao.impl.PizzaJdbcDaoImpl;
+import fr.pizzeria.dao.PizzaPizzeriaDao;
 import fr.pizzeria.exception.DeleteException;
 
 /**
@@ -13,7 +13,7 @@ public class SupprimerPizzaService extends MenuPizzaService {
 	/**
 	 * pDao : PizzaJdbcDaoImpl
 	 */
-	PizzaJdbcDaoImpl pDao = new PizzaJdbcDaoImpl();
+	PizzaPizzeriaDao pDao = new PizzaPizzeriaDao();
 
 	/**
 	 * Constructor

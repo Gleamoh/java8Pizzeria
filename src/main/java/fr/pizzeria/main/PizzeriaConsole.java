@@ -10,7 +10,7 @@ import fr.pizzeria.service.MenuPizzaService;
  * @author Kevin M.
  *
  */
-public class PizzeriaConsoleFactory {
+public class PizzeriaConsole {
 
 	/**
 	 * @param args
@@ -18,15 +18,17 @@ public class PizzeriaConsoleFactory {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);
-		
+
 		MenuPizzaService.setScanner(scanner);
 		int choix = 0;
 
 		while (true) {
 			MenuPizzaService.ShowMenu();
-			choix = Integer.parseInt(scanner.nextLine());
+			String choixBrut = scanner.nextLine().trim();
+			if(choixBrut.matches("[0-9]"))
+			choix = Integer.parseInt(choixBrut);
 
-			if (4 >= choix && 1 <= choix) {
+			if (5 >= choix && 1 <= choix) {
 				try {
 					FactoryPizzaService.getService(choix).executeUC();
 				} catch (PizzeriaException e) {

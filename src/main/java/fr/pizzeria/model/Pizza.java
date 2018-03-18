@@ -1,6 +1,5 @@
 package fr.pizzeria.model;
 
-import fr.pizzeria.utils.StringUtils;
 import fr.pizzeria.utils.ToString;
 
 /**
@@ -24,9 +23,6 @@ public class Pizza {
 	@ToString(beginWith = " ( ", endWith = " € ) ")
 	private double prix;
 
-	/** Pizza.java : int */
-	private static int compteur = 0;
-
 	/** Pizza.java : CategoriePizza */
 	@ToString(beginWith = " [ ", endWith = " ] ")
 	private CategoriePizza categorie;
@@ -39,7 +35,6 @@ public class Pizza {
 	 * @param prix
 	 */
 	public Pizza(String code, String libelle, double prix, CategoriePizza categorie) {
-		id = compteur++;
 		this.code = code;
 		this.labelle = libelle;
 		this.prix = prix;
@@ -61,7 +56,7 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return id + " - " + code + " - " + labelle + " coûte " + prix + "€ ";
+		return id + " - " + code + " - " + labelle + " coûte " + prix + "€ " + categorie;
 	}
 
 	@Override
@@ -85,7 +80,6 @@ public class Pizza {
 		prix = pizza.prix;
 	}
 
-	
 	/**
 	 * Getter
 	 * 
@@ -169,6 +163,16 @@ public class Pizza {
 	 */
 	public void setCategorie(CategoriePizza categorie) {
 		this.categorie = categorie;
+	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param id
+	 *            the id to set
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
