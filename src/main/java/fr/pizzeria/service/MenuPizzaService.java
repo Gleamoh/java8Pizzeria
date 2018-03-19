@@ -1,6 +1,5 @@
 package fr.pizzeria.service;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
 import org.apache.commons.lang.math.NumberUtils;
@@ -61,26 +60,22 @@ public abstract class MenuPizzaService {
 	 * Affiche l'interface d'edition d'une pizza
 	 * 
 	 * @return Pizza
-	 * @throws PizzeriaException 
+	 * @throws PizzeriaException
 	 * @throws UpdatePizzaException
 	 *             lève cette exception si la saisie de l'utilisateur est
 	 *             incorrecte
 	 */
 	protected Pizza editPizza() throws PizzeriaException {
-		
-		
+
 		System.out.println("----------------------------------------");
 		System.out.print("Veuillez saisir le code : ");
 		String code = scanner.nextLine().trim();
 		System.out.println("----------------------------------------");
 
 		// vérifie que le code est unique et a une taille de 3
-		try {
-			if (code.length() != 3 || pDao.pizzaExists(code) || code.equals(""))
-				throw new UpdateException("Le code doit etre unique et au format  \"ABC\" !");
-		} catch (SQLException e1) {
-			throw new PizzeriaException("La pizza n'existe pas");
-		}
+
+		if (code.length() != 3 || pDao.pizzaExists(code) || code.equals(""))
+			throw new UpdateException("Le code doit etre unique et au format  \"ABC\" !");
 
 		System.out.print("Veuillez saisir le nom : ");
 		String labelle = scanner.nextLine().trim();
@@ -96,12 +91,9 @@ public abstract class MenuPizzaService {
 
 		// détecter la categorie en fonction du label
 		CategoriePizza categoriePizza;
-		try {
-			categoriePizza = cDao.findByLabel(categorie);
-		} catch (SQLException e) {
-			throw new PizzeriaException("Aucune pizza trouvée pour ce code");
-		}
-		
+
+		categoriePizza = cDao.findByLabel(categorie);
+
 		if (categoriePizza == null) {
 			throw new UpdateException("Veuillez renseigner une catégorie existante !");
 		}

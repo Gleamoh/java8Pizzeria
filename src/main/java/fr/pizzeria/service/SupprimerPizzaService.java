@@ -1,7 +1,5 @@
 package fr.pizzeria.service;
 
-import java.sql.SQLException;
-
 import fr.pizzeria.dao.PizzaPizzeriaDao;
 import fr.pizzeria.exception.DeleteException;
 
@@ -34,11 +32,7 @@ public class SupprimerPizzaService extends MenuPizzaService {
 		System.out.println("########################################");
 		System.out.println();
 		// supprimer la pizza
-		try {
-			pDao.deletePizza(codePizza);
-		} catch (SQLException e) {
-			throw new DeleteException();
-		}
+		pDao.deletePizza(codePizza);
 
 	}
 

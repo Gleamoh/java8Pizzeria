@@ -1,7 +1,5 @@
 package fr.pizzeria.service;
 
-import java.sql.SQLException;
-
 import fr.pizzeria.dao.CategoryDao;
 import fr.pizzeria.dao.Dao;
 import fr.pizzeria.dao.PizzaPizzeriaDao;
@@ -15,11 +13,12 @@ import fr.pizzeria.model.Pizza;
  *
  */
 public class ListerPizzaService extends MenuPizzaService {
-	
+
 	private PizzeriaDao pizzaDao = new PizzaPizzeriaDao();
 	private Dao<CategoriePizza> cDao = new CategoryDao();
-	
-	/** Constructor
+
+	/**
+	 * Constructor
 	 * 
 	 */
 	public ListerPizzaService() {
@@ -32,19 +31,14 @@ public class ListerPizzaService extends MenuPizzaService {
 		System.out.println("########################################");
 		System.out.println("#              NOS PIZZAS              #");
 		System.out.println("########################################");
-		
-		try {
-			for (Pizza pizza : pizzaDao.findAll()) {
-				CategoriePizza categorie = cDao.findById(pizza.getCategorie().getId());
-				pizza.setCategorie(categorie);
-				System.out.println("#    " + pizza);
-				System.out.println("----------------------------------------");
-			}
-		} catch (SQLException e) {
-			
-			throw new SaveException();
+
+		for (Pizza pizza : pizzaDao.findAll()) {
+			CategoriePizza categorie = cDao.findById(pizza.getCategorie().getId());
+			pizza.setCategorie(categorie);
+			System.out.println("#    " + pizza);
+			System.out.println("----------------------------------------");
 		}
-		
+
 		System.out.println("########################################");
 		System.out.println("\n");
 	}

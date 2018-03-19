@@ -1,7 +1,5 @@
 package fr.pizzeria.service;
 
-import java.sql.SQLException;
-
 import fr.pizzeria.dao.PizzaPizzeriaDao;
 import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.SaveException;
@@ -32,7 +30,7 @@ public class AjouterPizzaService extends MenuPizzaService {
 		System.out.println("########################################");
 		try {
 			pDao.saveNew(editPizza());
-		} catch (PizzeriaException | SQLException e) {
+		} catch (PizzeriaException e) {
 			throw new SaveException();
 		}
 		System.out.println("########################################");

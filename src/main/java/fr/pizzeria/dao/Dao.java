@@ -18,46 +18,46 @@ public interface Dao<T> {
 	/**
 	 * @return : List<T>
 	 */
-	List<T> findAll() throws SQLException;
+	List<T> findAll();
 
 	/**
 	 * @param id
 	 * @return : T
 	 */
-	T findById(int id) throws SQLException;
+	T findById(int id);
 
 	/**
 	 * @param labelle
 	 * @return : T
 	 * @throws SQLException
 	 */
-	T findByLabel(String labelle) throws SQLException;
+	T findByLabel(String labelle);
 
 	/**
 	 * @param t
 	 * @throws SaveException
 	 *             : void
 	 */
-	void saveNew(T t) throws SQLException;
+	void saveNew(T t);
 
 	/**
 	 * @param t
 	 * @throws UpdateException
 	 *             : void
 	 */
-	void update(T t) throws SQLException;
+	void update(T t);
 
 	/**
 	 * @param t
 	 * @throws DeleteException
 	 *             : void
 	 */
-	void delete(T t) throws SQLException;
+	void delete(T t);
 
 	/**
 	 * @param result
 	 * @return : List<Pizza>
 	 */
-	List<T> parseToList(ResultSet result) throws SQLException;
+	List<T> parseToList(ResultSet result);
 
 }

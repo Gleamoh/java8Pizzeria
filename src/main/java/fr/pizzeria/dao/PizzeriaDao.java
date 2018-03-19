@@ -1,7 +1,5 @@
 package fr.pizzeria.dao;
 
-import java.sql.SQLException;
-
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -18,7 +16,7 @@ public interface PizzeriaDao extends Dao<Pizza> {
 	 * @param pizza
 	 * @throws UpdatePizzaException
 	 */
-	public void updatePizza(String codePizza, Pizza pizza) throws SQLException;
+	public void updatePizza(String codePizza, Pizza pizza);
 
 	/**
 	 * Supprime une pizza
@@ -26,7 +24,7 @@ public interface PizzeriaDao extends Dao<Pizza> {
 	 * @param codePizza
 	 * @throws DeletePizzaException
 	 */
-	public void deletePizza(String codePizza) throws SQLException;
+	public void deletePizza(String codePizza);
 
 	/**
 	 * Trouver une pizza en fonction du code en paramètre
@@ -34,7 +32,7 @@ public interface PizzeriaDao extends Dao<Pizza> {
 	 * @param codePizza
 	 * @return
 	 */
-	public Pizza findPizzaByCode(String codePizza) throws SQLException;
+	public Pizza findPizzaByCode(String codePizza);
 
 	/**
 	 * Retourne vrai si la pizza est presente dans la liste
@@ -42,5 +40,5 @@ public interface PizzeriaDao extends Dao<Pizza> {
 	 * @param codePizza
 	 * @return boolean
 	 */
-	public boolean pizzaExists(String codePizza) throws SQLException;
+	public boolean pizzaExists(String codePizza);
 }

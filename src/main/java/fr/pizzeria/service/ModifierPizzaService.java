@@ -1,7 +1,5 @@
 package fr.pizzeria.service;
 
-import java.sql.SQLException;
-
 import fr.pizzeria.dao.PizzaPizzeriaDao;
 import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.UpdateException;
@@ -37,8 +35,8 @@ public class ModifierPizzaService extends MenuPizzaService {
 		// modifier la pizza
 		try {
 			pDao.updatePizza(code, editPizza());
-		} catch (PizzeriaException | SQLException e) {
-			throw new UpdateException();
+		} catch (PizzeriaException e) {
+			e.printStackTrace();
 		}
 
 	}
