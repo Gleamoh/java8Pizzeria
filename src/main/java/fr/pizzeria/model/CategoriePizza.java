@@ -1,15 +1,27 @@
 package fr.pizzeria.model;
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author Kevin M.
  *
  */
+@Entity
+@Table(name="categorie")
 public class CategoriePizza {
 
 	
 	/**
 	 * id : int
 	 */
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 
 	/**
@@ -17,6 +29,9 @@ public class CategoriePizza {
 	 */
 	private String labelle;
 
+	/** pizzas : List<Pizza> */
+	private List<Pizza> pizzas;
+	
 	/**
 	 * Constructor
 	 * 
@@ -30,9 +45,10 @@ public class CategoriePizza {
 	 * 
 	 * @param categorie
 	 */
-	public CategoriePizza(String categorie, int id) {
+	public CategoriePizza(String categorie, int id, List<Pizza> pizzas) {
 		labelle = categorie;
 		this.id = id;
+		this.pizzas = pizzas;
 	}
 
 	/*
@@ -81,6 +97,20 @@ public class CategoriePizza {
 	 */
 	public void setLabelle(String label) {
 		this.labelle = label;
+	}
+
+	/** Getter
+	 * @return the pizzas
+	 */
+	public List<Pizza> getPizzas() {
+		return pizzas;
+	}
+
+	/** Setter
+	 * @param pizzas the pizzas to set
+	 */
+	public void setPizzas(List<Pizza> pizzas) {
+		this.pizzas = pizzas;
 	}
 
 }

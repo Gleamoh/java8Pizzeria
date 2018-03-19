@@ -31,7 +31,7 @@ public interface Dao<T> {
 	 * @return : T
 	 * @throws SQLException
 	 */
-	T findByLabel(String labelle);
+	List<T> findByLabel(String labelle);
 
 	/**
 	 * @param t

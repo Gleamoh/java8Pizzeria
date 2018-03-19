@@ -3,18 +3,11 @@
  */
 package fr.pizzeria.dao;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import org.junit.Test;
-
-import fr.pizzeria.model.Pizza;
 
 /**
  * @author kevin
@@ -92,10 +85,7 @@ public class PizzaPizzeriaDaoTest {
 	 */
 	@Test
 	public void testFindAll() throws SQLException {
-		PizzaPizzeriaDao dao = new PizzaPizzeriaDao();
-		List<Pizza> list = dao.findAll();
-		assertNotNull(list);
-		assertTrue(0 < list.size());
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -114,26 +104,11 @@ public class PizzaPizzeriaDaoTest {
 	 */
 	@Test
 	public void testFindByLabel() throws SQLException {
-		PizzaPizzeriaDao pdDaoImpl = new PizzaPizzeriaDao();
-
-		Pizza p1 = pdDaoImpl.findByLabel(null);
-		Pizza p2 = pdDaoImpl.findByLabel("Pépédrponi");
-		Pizza p3 = pdDaoImpl.findByLabel("Pépéroni");
-
-		assertNull(p1);
-		assertNull(p2);
-		assertNotNull(p3);
+		fail("Not yet implemented");
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testFindByLabel_null() throws SQLException {
-
-		try {
-			PizzaPizzeriaDao pdDaoImpl = new PizzaPizzeriaDao();
-			pdDaoImpl.findByLabel(null);
-		} catch (RuntimeException e) {
-			assertEquals(NullPointerException.class, e.getClass());
-		}
-
+		fail("Not yet implemented");
 	}
 }

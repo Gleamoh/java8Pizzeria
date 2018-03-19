@@ -1,5 +1,7 @@
 package fr.pizzeria.dao;
 
+import java.util.List;
+
 import fr.pizzeria.model.Pizza;
 
 /**
@@ -32,7 +34,7 @@ public interface PizzeriaDao extends Dao<Pizza> {
 	 * @param codePizza
 	 * @return
 	 */
-	public Pizza findPizzaByCode(String codePizza);
+	public List<Pizza> findPizzaByCode(String codePizza);
 
 	/**
 	 * Retourne vrai si la pizza est presente dans la liste

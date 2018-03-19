@@ -1,6 +1,6 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaPizzeriaDao;
+import fr.pizzeria.dao.FactoryDao;
 import fr.pizzeria.exception.DeleteException;
 
 /**
@@ -8,10 +8,6 @@ import fr.pizzeria.exception.DeleteException;
  * @author Kevin M.
  */
 public class SupprimerPizzaService extends MenuPizzaService {
-	/**
-	 * pDao : PizzaJdbcDaoImpl
-	 */
-	PizzaPizzeriaDao pDao = new PizzaPizzeriaDao();
 
 	/**
 	 * Constructor
@@ -32,7 +28,7 @@ public class SupprimerPizzaService extends MenuPizzaService {
 		System.out.println("########################################");
 		System.out.println();
 		// supprimer la pizza
-		pDao.deletePizza(codePizza);
+		FactoryDao.getPizzaDao().deletePizza(codePizza);
 
 	}
 

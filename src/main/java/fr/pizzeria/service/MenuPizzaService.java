@@ -4,8 +4,7 @@ import java.util.Scanner;
 
 import org.apache.commons.lang.math.NumberUtils;
 
-import fr.pizzeria.dao.CategoryDao;
-import fr.pizzeria.dao.PizzaPizzeriaDao;
+import fr.pizzeria.dao.FactoryDao;
 import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.UpdateException;
 import fr.pizzeria.model.CategoriePizza;
@@ -15,16 +14,6 @@ public abstract class MenuPizzaService {
 
 	/** ServicePizzaMenu.java : Scanner */
 	private static Scanner scanner;
-
-	/**
-	 * pDao : PizzaJdbcDaoImpl
-	 */
-	PizzaPizzeriaDao pDao = new PizzaPizzeriaDao();
-
-	/**
-	 * cDao : CategoryDaoImpl
-	 */
-	CategoryDao cDao = new CategoryDao();
 
 	/**
 	 * Constructor
@@ -74,7 +63,7 @@ public abstract class MenuPizzaService {
 
 		// vérifie que le code est unique et a une taille de 3
 
-		if (code.length() != 3 || pDao.pizzaExists(code) || code.equals(""))
+		if (code.length() != 3 || FactoryDao.getPizzaDao().pizzaExists(code) || code.equals(""))
 			throw new UpdateException("Le code doit etre unique et au format  \"ABC\" !");
 
 		System.out.print("Veuillez saisir le nom : ");
@@ -92,7 +81,7 @@ public abstract class MenuPizzaService {
 		// détecter la categorie en fonction du label
 		CategoriePizza categoriePizza;
 
-		categoriePizza = cDao.findByLabel(categorie);
+		categoriePizza = FactoryDao.getCategorieDao().findByLabel(categorie).get(0);
 
 		if (categoriePizza == null) {
 			throw new UpdateException("Veuillez renseigner une catégorie existante !");

@@ -1,6 +1,6 @@
 package fr.pizzeria.service;
 
-import fr.pizzeria.dao.PizzaPizzeriaDao;
+import fr.pizzeria.dao.FactoryDao;
 import fr.pizzeria.exception.PizzeriaException;
 import fr.pizzeria.exception.UpdateException;
 
@@ -9,10 +9,6 @@ import fr.pizzeria.exception.UpdateException;
  *
  */
 public class ModifierPizzaService extends MenuPizzaService {
-	/**
-	 * pDao : PizzaJdbcDaoImpl
-	 */
-	PizzaPizzeriaDao pDao = new PizzaPizzeriaDao();
 
 	/**
 	 * Constructor
@@ -34,7 +30,7 @@ public class ModifierPizzaService extends MenuPizzaService {
 		System.out.println();
 		// modifier la pizza
 		try {
-			pDao.updatePizza(code, editPizza());
+			FactoryDao.getPizzaDao().updatePizza(code, editPizza());
 		} catch (PizzeriaException e) {
 			e.printStackTrace();
 		}
