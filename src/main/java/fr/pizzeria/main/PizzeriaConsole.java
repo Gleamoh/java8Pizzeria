@@ -25,8 +25,8 @@ public class PizzeriaConsole {
 		while (true) {
 			MenuPizzaService.ShowMenu();
 			String choixBrut = scanner.nextLine().trim();
-			if(choixBrut.matches("[0-9]"))
-			choix = Integer.parseInt(choixBrut);
+			if (choixBrut.matches("[0-9]"))
+				choix = Integer.parseInt(choixBrut);
 
 			if (5 >= choix && 1 <= choix) {
 				try {

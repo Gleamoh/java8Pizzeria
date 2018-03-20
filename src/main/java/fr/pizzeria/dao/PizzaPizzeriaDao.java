@@ -16,7 +16,7 @@ import fr.pizzeria.model.Pizza;
  * @author Kevin M.
  *
  */
-public class PizzaPizzeriaDao implements PizzeriaDao {
+public class PizzaPizzeriaDao implements IPizzeriaDao {
 
 	EntityManagerFactory emf;
 
@@ -35,7 +35,7 @@ public class PizzaPizzeriaDao implements PizzeriaDao {
 	 */
 	@Override
 	public boolean pizzaExists(String codePizza) {
-		return (findPizzaByCode(codePizza) != null);
+		return (findPizzaByCode(codePizza).size() > 0);
 	}
 
 	/*
@@ -102,14 +102,22 @@ public class PizzaPizzeriaDao implements PizzeriaDao {
 	 * fr.pizzeria.model.Pizza)
 	 */
 	@Override
-	public void updatePizza(String codePizza, Pizza pizza) {
+	public void updatePizza(String code, Pizza pizza) {
 
-		Pizza newPizza = findPizzaByCode(codePizza).get(0);
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction et = em.getTransaction();
+		et.begin();
+
+		Pizza newPizza = findPizzaByCode(em, code).get(0);
 		newPizza.setCategorie(pizza.getCategorie());
 		newPizza.setCode(pizza.getCode());
-		newPizza.setId(pizza.getId());
 		newPizza.setLabelle(pizza.getLabelle());
 		newPizza.setPrix(pizza.getPrix());
+		
+		
+		em.merge(newPizza);
+		et.commit();
+		em.close();
 
 	}
 
@@ -119,11 +127,11 @@ public class PizzaPizzeriaDao implements PizzeriaDao {
 	 * @see fr.pizzeria.dao.PizzaDao#deletePizza(java.lang.String)
 	 */
 	@Override
-	public void deletePizza(String codePizza) {
+	public void deletePizza(String code) {
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction et = em.getTransaction();
 		et.begin();
-		em.remove(findPizzaByCode(codePizza).get(0));
+		em.remove(findPizzaByCode(em, code).get(0));
 		et.commit();
 		em.close();
 	}
@@ -134,16 +142,19 @@ public class PizzaPizzeriaDao implements PizzeriaDao {
 	 * @see fr.pizzeria.dao.PizzaDao#findPizzaByCode(java.lang.String)
 	 */
 	@Override
-	public List<Pizza> findPizzaByCode(String codePizza) {
+	public List<Pizza> findPizzaByCode(String code) {
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-		TypedQuery<Pizza> query = em.createQuery("from Pizza p where p.code = :code", Pizza.class);
-		query.setParameter("code", codePizza);
-		List<Pizza> pizzas = query.getResultList();
+		List<Pizza> list = findPizzaByCode(em, code);
 		em.close();
-		return pizzas;
+		return list;
 	}
 
+	public List<Pizza> findPizzaByCode(EntityManager em, String code) {
+		TypedQuery<Pizza> query = em.createQuery("from Pizza p where p.code = :code", Pizza.class);
+		query.setParameter("code", code);
+		return query.getResultList();
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -152,7 +163,6 @@ public class PizzaPizzeriaDao implements PizzeriaDao {
 	@Override
 	public List<Pizza> findAll() {
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
 		TypedQuery<Pizza> query = em.createQuery("from Pizza", Pizza.class);
 		List<Pizza> pizzas = query.getResultList();
 		em.close();
@@ -167,7 +177,6 @@ public class PizzaPizzeriaDao implements PizzeriaDao {
 	@Override
 	public Pizza findById(int id) {
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
 		Pizza pizza = em.find(Pizza.class, id);
 		em.close();
 		return pizza;

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -13,15 +14,14 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="categorie")
+@Table(name = "categorie")
 public class CategoriePizza {
 
-	
 	/**
 	 * id : int
 	 */
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	/**
@@ -30,8 +30,9 @@ public class CategoriePizza {
 	private String labelle;
 
 	/** pizzas : List<Pizza> */
+	@OneToMany(mappedBy = "categorie")
 	private List<Pizza> pizzas;
-	
+
 	/**
 	 * Constructor
 	 * 
@@ -43,11 +44,13 @@ public class CategoriePizza {
 	/**
 	 * Constructor
 	 * 
-	 * @param categorie
+	 * @param id
+	 * @param labelle
+	 * @param pizzas
 	 */
-	public CategoriePizza(String categorie, int id, List<Pizza> pizzas) {
-		labelle = categorie;
+	public CategoriePizza(int id, String labelle, List<Pizza> pizzas) {
 		this.id = id;
+		this.labelle = labelle;
 		this.pizzas = pizzas;
 	}
 
@@ -58,7 +61,7 @@ public class CategoriePizza {
 	 */
 	@Override
 	public String toString() {
-		return id + " - " + labelle ;
+		return id + " - " + labelle;
 	}
 
 	/**
@@ -99,15 +102,20 @@ public class CategoriePizza {
 		this.labelle = label;
 	}
 
-	/** Getter
+	/**
+	 * Getter
+	 * 
 	 * @return the pizzas
 	 */
 	public List<Pizza> getPizzas() {
 		return pizzas;
 	}
 
-	/** Setter
-	 * @param pizzas the pizzas to set
+	/**
+	 * Setter
+	 * 
+	 * @param pizzas
+	 *            the pizzas to set
 	 */
 	public void setPizzas(List<Pizza> pizzas) {
 		this.pizzas = pizzas;

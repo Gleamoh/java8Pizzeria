@@ -13,7 +13,7 @@ import fr.pizzeria.exception.UpdateException;
  * @author Kevin M. Interface qui definie les méthodes permettant CRUD
  *
  */
-public interface Dao<T> {
+public interface IDao<T> {
 
 	/**
 	 * @return : List<T>

@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import fr.pizzeria.utils.ToString;
@@ -34,6 +36,8 @@ public class Pizza {
 
 	/** Pizza.java : CategoriePizza */
 	@ToString(beginWith = " [ ", endWith = " ] ")
+	@ManyToOne
+	@JoinColumn(name="id_categorie")
 	private CategoriePizza categorie;
 
 	/**
@@ -50,6 +54,16 @@ public class Pizza {
 		this.categorie = categorie;
 	}
 
+	
+	
+	/** Constructor
+	 * 
+	 */
+	public Pizza() {
+	}
+
+
+
 	/**
 	 * Constructor
 	 * 
@@ -62,6 +76,8 @@ public class Pizza {
 		this.labelle = libelle;
 		this.prix = prix;
 	}
+
+	
 
 	@Override
 	public String toString() {

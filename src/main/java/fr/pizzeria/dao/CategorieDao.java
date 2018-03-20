@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.apache.commons.lang.NotImplementedException;
@@ -17,7 +16,7 @@ import fr.pizzeria.model.CategoriePizza;
  * @author Kevin M.
  *
  */
-public class CategorieDao implements Dao<CategoriePizza> {
+public class CategorieDao implements IDao<CategoriePizza> {
 
 	private EntityManagerFactory emf;
 
@@ -33,9 +32,7 @@ public class CategorieDao implements Dao<CategoriePizza> {
 	public List<CategoriePizza> findAll() {
 
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
-
-		Query query = em.createQuery("from CategoryPizza c", CategoriePizza.class);
+		TypedQuery<CategoriePizza> query = em.createQuery("from CategoryPizza c", CategoriePizza.class);
 		List<CategoriePizza> categoriePizzas = query.getResultList();
 
 		em.close();
@@ -46,7 +43,6 @@ public class CategorieDao implements Dao<CategoriePizza> {
 	@Override
 	public CategoriePizza findById(int id) {
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction et = em.getTransaction();
 		CategoriePizza categoriePizza = em.find(CategoriePizza.class, id);
 		em.close();
 		return categoriePizza;
@@ -94,8 +90,11 @@ public class CategorieDao implements Dao<CategoriePizza> {
 		EntityManager em = emf.createEntityManager();
 		TypedQuery<CategoriePizza> query = em.createQuery("from CategoriePizza c where c.labelle = :labelle ",
 				CategoriePizza.class);
-		query.setParameter("labelle", 1);
-		return query.getResultList();
+		query.setParameter("labelle", labelle);
+		List<CategoriePizza> categoriePizzas = query.getResultList();
+		em.close();
+		
+		return  categoriePizzas;
 	}
 
 }

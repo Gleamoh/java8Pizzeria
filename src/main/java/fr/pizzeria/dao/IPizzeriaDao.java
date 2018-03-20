@@ -9,7 +9,7 @@ import fr.pizzeria.model.Pizza;
  * @author Kevin M. Interface qui definie les méthodes permettant CRUD
  *
  */
-public interface PizzeriaDao extends Dao<Pizza> {
+public interface IPizzeriaDao extends IDao<Pizza> {
 
 	/**
 	 * Modifie une pizza
